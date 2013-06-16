@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CargoEditDlg" widgetVar="CargoEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditCargoTitle}">
+
+            <h:form id="CargoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{cargoController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditCargoLabel_cargoPK_idcargo}" for="cargoPK_idcargo" />
+                        <h:outputText id="cargoPK_idcargo" value="#{cargoController.selected.cargoPK.idcargo}" />
+
+                        <p:outputLabel value="#{myBundle.EditCargoLabel_nombrecargo}" for="nombrecargo" />
+                        <p:inputText id="nombrecargo" value="#{cargoController.selected.nombrecargo}" title="#{myBundle.EditCargoTitle_nombrecargo}" />
+
+                        <p:outputLabel value="#{myBundle.EditCargoLabel_fechainiciocargo}" for="fechainiciocargo" />
+                        <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditCargoLabel_fechafincargo}" for="fechafincargo" />
+                        <p:calendar id="fechafincargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechafincargo}" title="#{myBundle.EditCargoTitle_fechafincargo}"  showOn="button"/>
+
+                        <h:outputLabel value="#{myBundle.EditCargoLabel_docente}" for="docente" />
+                        <h:outputText id="docente" value="#{cargoController.selected.docente.iddocente}"/>
+
+                        <h:outputLabel value="#{myBundle.EditCargoLabel_departamento}" for="departamento" />
+                        <h:outputText id="departamento" value="#{cargoController.selected.departamento.descripciondepartamento}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cargoController.save}" value="#{myBundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CargoEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="CargoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

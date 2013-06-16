@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="Cargo" outcome="/cargo/index" />
+                    <p:menuitem value="Departamento" outcome="/departamento/index" />
+                    <p:menuitem value="Docente" outcome="/docente/index" />
+                    <p:menuitem value="Horario" outcome="/horario/index" />
+                    <p:menuitem value="Local" outcome="/local/index" />
+                    <p:menuitem value="Materia" outcome="/materia/index" />
+                    <p:menuitem value="Pensum" outcome="/pensum/index" />
+                    <p:menuitem value="Permisos" outcome="/permisos/index" />
+                    <p:menuitem value="Prerrequisito" outcome="/prerrequisito/index" />
+                    <p:menuitem value="Propuesta" outcome="/propuesta/index" />
+                    <p:menuitem value="Recursos" outcome="/recursos/index" />
+                    <p:menuitem value="Usuario" outcome="/usuario/index" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

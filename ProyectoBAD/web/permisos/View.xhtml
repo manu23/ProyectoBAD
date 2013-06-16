@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PermisosViewDlg" widgetVar="PermisosViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewPermisosTitle}">
+
+            <h:form id="PermisosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{permisosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_idpermiso}"/>
+                        <h:outputText value="#{permisosController.selected.idpermiso}" title="#{myBundle.ViewPermisosTitle_idpermiso}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_tabla}"/>
+                        <h:outputText value="#{permisosController.selected.tabla}" title="#{myBundle.ViewPermisosTitle_tabla}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_crear}"/>
+                        <h:outputText value="#{permisosController.selected.crear}" title="#{myBundle.ViewPermisosTitle_crear}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_leer}"/>
+                        <h:outputText value="#{permisosController.selected.leer}" title="#{myBundle.ViewPermisosTitle_leer}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_actualizar}"/>
+                        <h:outputText value="#{permisosController.selected.actualizar}" title="#{myBundle.ViewPermisosTitle_actualizar}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_eliminar}"/>
+                        <h:outputText value="#{permisosController.selected.eliminar}" title="#{myBundle.ViewPermisosTitle_eliminar}"/>
+
+                        <h:outputText value="#{myBundle.ViewPermisosLabel_idusuario}"/>
+                        <h:outputText value="#{permisosController.selected.idusuario.idusuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PermisosViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

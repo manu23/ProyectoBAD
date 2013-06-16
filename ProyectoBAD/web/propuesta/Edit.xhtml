@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropuestaEditDlg" widgetVar="PropuestaEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditPropuestaTitle}">
+
+            <h:form id="PropuestaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{propuestaController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditPropuestaLabel_idpropuesta}" for="idpropuesta" />
+                        <h:outputText id="idpropuesta" value="#{propuestaController.selected.idpropuesta}" />
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_fechapropuesta}" for="fechapropuesta" />
+                        <p:calendar id="fechapropuesta" pattern="MM/dd/yyyy HH:mm:ss" value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.EditPropuestaTitle_fechapropuesta}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_fechapropuesta}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_detalle}" for="detalle" />
+                        <p:inputTextarea rows="4" cols="30" id="detalle" value="#{propuestaController.selected.detalle}" title="#{myBundle.EditPropuestaTitle_detalle}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_detalle}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_justificacion}" for="justificacion" />
+                        <p:inputTextarea rows="4" cols="30" id="justificacion" value="#{propuestaController.selected.justificacion}" title="#{myBundle.EditPropuestaTitle_justificacion}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_justificacion}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_aprobadojefe}" for="aprobadojefe" />
+                        <p:inputText id="aprobadojefe" value="#{propuestaController.selected.aprobadojefe}" title="#{myBundle.EditPropuestaTitle_aprobadojefe}" />
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_aprobadodirector}" for="aprobadodirector" />
+                        <p:inputText id="aprobadodirector" value="#{propuestaController.selected.aprobadodirector}" title="#{myBundle.EditPropuestaTitle_aprobadodirector}" />
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_aprobadojunta}" for="aprobadojunta" />
+                        <p:inputText id="aprobadojunta" value="#{propuestaController.selected.aprobadojunta}" title="#{myBundle.EditPropuestaTitle_aprobadojunta}" />
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_iddocente}" for="iddocente" />
+                        <p:selectOneMenu id="iddocente" value="#{propuestaController.selected.iddocente}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{docenteController.items}"
+                                           var="iddocenteItem"
+                                           itemValue="#{iddocenteItem}"
+                                           itemLabel="#{iddocenteItem.iddocente.toString()}"
+                                           />
+                            <f:converter binding="#{docenteConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditPropuestaLabel_cargo}" for="cargo" />
+                        <p:selectOneMenu id="cargo" value="#{propuestaController.selected.cargo}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cargoController.items}"
+                                           var="cargoItem"
+                                           itemValue="#{cargoItem}"
+                                           itemLabel="#{cargoItem.cargoPK.toString()}"
+                                           />
+                            <f:converter binding="#{cargoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{propuestaController.save}" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PropuestaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

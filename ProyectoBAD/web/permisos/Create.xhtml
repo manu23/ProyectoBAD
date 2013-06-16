@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PermisosCreateDlg" widgetVar="PermisosCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreatePermisosTitle}">
+
+            <h:form id="PermisosCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{permisosController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_idpermiso}" for="idpermiso" />
+                        <p:inputText id="idpermiso" value="#{permisosController.selected.idpermiso}" title="#{myBundle.CreatePermisosTitle_idpermiso}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_idpermiso}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_tabla}" for="tabla" />
+                        <p:inputText id="tabla" value="#{permisosController.selected.tabla}" title="#{myBundle.CreatePermisosTitle_tabla}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_tabla}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_crear}" for="crear" />
+                        <p:inputText id="crear" value="#{permisosController.selected.crear}" title="#{myBundle.CreatePermisosTitle_crear}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_crear}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_leer}" for="leer" />
+                        <p:inputText id="leer" value="#{permisosController.selected.leer}" title="#{myBundle.CreatePermisosTitle_leer}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_leer}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_actualizar}" for="actualizar" />
+                        <p:inputText id="actualizar" value="#{permisosController.selected.actualizar}" title="#{myBundle.CreatePermisosTitle_actualizar}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_actualizar}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_eliminar}" for="eliminar" />
+                        <p:inputText id="eliminar" value="#{permisosController.selected.eliminar}" title="#{myBundle.CreatePermisosTitle_eliminar}" required="true" requiredMessage="#{myBundle.CreatePermisosRequiredMessage_eliminar}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePermisosLabel_idusuario}" for="idusuario" />
+                        <p:selectOneMenu id="idusuario" value="#{permisosController.selected.idusuario}" required="true" requiredMessage="#{myBundle.EditPermisosRequiredMessage_idusuario}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.items}"
+                                           var="idusuarioItem"
+                                           itemValue="#{idusuarioItem}"
+                                           itemLabel="#{idusuarioItem.idusuario.toString()}"
+                                           />
+                            <f:converter binding="#{usuarioConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{permisosController.saveNew}" value="#{myBundle.Save}" update="display,:PermisosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PermisosCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PermisosCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

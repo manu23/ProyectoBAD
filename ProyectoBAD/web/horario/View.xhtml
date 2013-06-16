@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorarioViewDlg" widgetVar="HorarioViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewHorarioTitle}">
+
+            <h:form id="HorarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horarioController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_idhorario}"/>
+                        <h:outputText value="#{horarioController.selected.idhorario}" title="#{myBundle.ViewHorarioTitle_idhorario}"/>
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_dia}"/>
+                        <h:outputText value="#{horarioController.selected.dia}" title="#{myBundle.ViewHorarioTitle_dia}"/>
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_horainicio}"/>
+                        <h:outputText value="#{horarioController.selected.horainicio}" title="#{myBundle.ViewHorarioTitle_horainicio}"/>
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_horafin}"/>
+                        <h:outputText value="#{horarioController.selected.horafin}" title="#{myBundle.ViewHorarioTitle_horafin}"/>
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_materia}"/>
+                        <h:outputText value="#{horarioController.selected.materia.materiaPK}"/>
+
+                        <h:outputText value="#{myBundle.ViewHorarioLabel_idlocal}"/>
+                        <h:outputText value="#{horarioController.selected.idlocal.idlocal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="HorarioViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

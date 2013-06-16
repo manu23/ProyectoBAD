@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaEditDlg" widgetVar="MateriaEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditMateriaTitle}">
+
+            <h:form id="MateriaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{materiaController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditMateriaLabel_materiaPK_codigomateria}" for="materiaPK_codigomateria" />
+                        <h:outputText id="materiaPK_codigomateria" value="#{materiaController.selected.materiaPK.codigomateria}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_nombremateria}" for="nombremateria" />
+                        <p:inputText id="nombremateria" value="#{materiaController.selected.nombremateria}" title="#{myBundle.EditMateriaTitle_nombremateria}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_uv}" for="uv" />
+                        <p:inputText id="uv" value="#{materiaController.selected.uv}" title="#{myBundle.EditMateriaTitle_uv}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_cicloimparte}" for="cicloimparte" />
+                        <p:inputText id="cicloimparte" value="#{materiaController.selected.cicloimparte}" title="#{myBundle.EditMateriaTitle_cicloimparte}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_tipomateria}" for="tipomateria" />
+                        <p:inputText id="tipomateria" value="#{materiaController.selected.tipomateria}" title="#{myBundle.EditMateriaTitle_tipomateria}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_numhorasprac}" for="numhorasprac" />
+                        <p:inputText id="numhorasprac" value="#{materiaController.selected.numhorasprac}" title="#{myBundle.EditMateriaTitle_numhorasprac}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_numhorasteo}" for="numhorasteo" />
+                        <p:inputText id="numhorasteo" value="#{materiaController.selected.numhorasteo}" title="#{myBundle.EditMateriaTitle_numhorasteo}" />
+
+                        <h:outputLabel value="#{myBundle.EditMateriaLabel_propuesta}" for="propuesta" />
+                        <h:outputText id="propuesta" value="#{materiaController.selected.propuesta.idpropuesta}"/>
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_idpensum}" for="idpensum" />
+                        <p:selectOneMenu id="idpensum" value="#{materiaController.selected.idpensum}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pensumController.items}"
+                                           var="idpensumItem"
+                                           itemValue="#{idpensumItem}"
+                                           itemLabel="#{idpensumItem.idpensum.toString()}"
+                                           />
+                            <f:converter binding="#{pensumConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_iddocente}" for="iddocente" />
+                        <p:selectOneMenu id="iddocente" value="#{materiaController.selected.iddocente}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{docenteController.items}"
+                                           var="iddocenteItem"
+                                           itemValue="#{iddocenteItem}"
+                                           itemLabel="#{iddocenteItem.iddocente.toString()}"
+                                           />
+                            <f:converter binding="#{docenteConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_prerrequisito}" for="prerrequisito" />
+                        <p:selectOneMenu id="prerrequisito" value="#{materiaController.selected.prerrequisito}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{prerrequisitoController.items}"
+                                           var="prerrequisitoItem"
+                                           itemValue="#{prerrequisitoItem}"
+                                           itemLabel="#{prerrequisitoItem.prerrequisitoPK.toString()}"
+                                           />
+                            <f:converter binding="#{prerrequisitoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materiaController.save}" value="#{myBundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MateriaEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="MateriaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

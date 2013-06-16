@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropuestaViewDlg" widgetVar="PropuestaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewPropuestaTitle}">
+
+            <h:form id="PropuestaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{propuestaController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_idpropuesta}"/>
+                        <h:outputText value="#{propuestaController.selected.idpropuesta}" title="#{myBundle.ViewPropuestaTitle_idpropuesta}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_fechapropuesta}"/>
+                        <h:outputText value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.ViewPropuestaTitle_fechapropuesta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_detalle}"/>
+                        <h:outputText value="#{propuestaController.selected.detalle}" title="#{myBundle.ViewPropuestaTitle_detalle}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_justificacion}"/>
+                        <h:outputText value="#{propuestaController.selected.justificacion}" title="#{myBundle.ViewPropuestaTitle_justificacion}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_aprobadojefe}"/>
+                        <h:outputText value="#{propuestaController.selected.aprobadojefe}" title="#{myBundle.ViewPropuestaTitle_aprobadojefe}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_aprobadodirector}"/>
+                        <h:outputText value="#{propuestaController.selected.aprobadodirector}" title="#{myBundle.ViewPropuestaTitle_aprobadodirector}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_aprobadojunta}"/>
+                        <h:outputText value="#{propuestaController.selected.aprobadojunta}" title="#{myBundle.ViewPropuestaTitle_aprobadojunta}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_materiaCollection}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_iddocente}"/>
+                        <h:outputText value="#{propuestaController.selected.iddocente.iddocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_cargo}"/>
+                        <h:outputText value="#{propuestaController.selected.cargo.cargoPK}"/>
+
+                        <h:outputText value="#{myBundle.ViewPropuestaLabel_recursosCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PropuestaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

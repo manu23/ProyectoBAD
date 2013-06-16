@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorarioEditDlg" widgetVar="HorarioEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditHorarioTitle}">
+
+            <h:form id="HorarioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{horarioController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditHorarioLabel_idhorario}" for="idhorario" />
+                        <h:outputText id="idhorario" value="#{horarioController.selected.idhorario}" />
+
+                        <p:outputLabel value="#{myBundle.EditHorarioLabel_dia}" for="dia" />
+                        <p:inputText id="dia" value="#{horarioController.selected.dia}" title="#{myBundle.EditHorarioTitle_dia}" />
+
+                        <p:outputLabel value="#{myBundle.EditHorarioLabel_horainicio}" for="horainicio" />
+                        <p:inputText id="horainicio" value="#{horarioController.selected.horainicio}" title="#{myBundle.EditHorarioTitle_horainicio}" />
+
+                        <p:outputLabel value="#{myBundle.EditHorarioLabel_horafin}" for="horafin" />
+                        <p:inputText id="horafin" value="#{horarioController.selected.horafin}" title="#{myBundle.EditHorarioTitle_horafin}" />
+
+                        <p:outputLabel value="#{myBundle.EditHorarioLabel_materia}" for="materia" />
+                        <p:selectOneMenu id="materia" value="#{horarioController.selected.materia}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiaController.items}"
+                                           var="materiaItem"
+                                           itemValue="#{materiaItem}"
+                                           itemLabel="#{materiaItem.materiaPK.toString()}"
+                                           />
+                            <f:converter binding="#{materiaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditHorarioLabel_idlocal}" for="idlocal" />
+                        <p:selectOneMenu id="idlocal" value="#{horarioController.selected.idlocal}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{localController.items}"
+                                           var="idlocalItem"
+                                           itemValue="#{idlocalItem}"
+                                           itemLabel="#{idlocalItem.idlocal.toString()}"
+                                           />
+                            <f:converter binding="#{localConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horarioController.save}" value="#{myBundle.Save}" update="display,:HorarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,HorarioEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="HorarioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

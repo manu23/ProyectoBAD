@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewUsuarioTitle}">
+
+            <h:form id="UsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_idusuario}"/>
+                        <h:outputText value="#{usuarioController.selected.idusuario}" title="#{myBundle.ViewUsuarioTitle_idusuario}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_password}"/>
+                        <h:outputText value="#{usuarioController.selected.password}" title="#{myBundle.ViewUsuarioTitle_password}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_tipousuario}"/>
+                        <h:outputText value="#{usuarioController.selected.tipousuario}" title="#{myBundle.ViewUsuarioTitle_tipousuario}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_estado}"/>
+                        <h:outputText value="#{usuarioController.selected.estado}" title="#{myBundle.ViewUsuarioTitle_estado}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_iddocente}"/>
+                        <h:outputText value="#{usuarioController.selected.iddocente.iddocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuarioLabel_permisosCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="UsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RecursosViewDlg" widgetVar="RecursosViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewRecursosTitle}">
+
+            <h:form id="RecursosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{recursosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewRecursosLabel_idrecursos}"/>
+                        <h:outputText value="#{recursosController.selected.idrecursos}" title="#{myBundle.ViewRecursosTitle_idrecursos}"/>
+
+                        <h:outputText value="#{myBundle.ViewRecursosLabel_nombrerecursos}"/>
+                        <h:outputText value="#{recursosController.selected.nombrerecursos}" title="#{myBundle.ViewRecursosTitle_nombrerecursos}"/>
+
+                        <h:outputText value="#{myBundle.ViewRecursosLabel_descripcionrecursos}"/>
+                        <h:outputText value="#{recursosController.selected.descripcionrecursos}" title="#{myBundle.ViewRecursosTitle_descripcionrecursos}"/>
+
+                        <h:outputText value="#{myBundle.ViewRecursosLabel_idpropuesta}"/>
+                        <h:outputText value="#{recursosController.selected.idpropuesta.idpropuesta}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="RecursosViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

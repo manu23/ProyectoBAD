@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RecursosEditDlg" widgetVar="RecursosEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditRecursosTitle}">
+
+            <h:form id="RecursosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{recursosController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditRecursosLabel_idrecursos}" for="idrecursos" />
+                        <h:outputText id="idrecursos" value="#{recursosController.selected.idrecursos}" />
+
+                        <p:outputLabel value="#{myBundle.EditRecursosLabel_nombrerecursos}" for="nombrerecursos" />
+                        <p:inputText id="nombrerecursos" value="#{recursosController.selected.nombrerecursos}" title="#{myBundle.EditRecursosTitle_nombrerecursos}" />
+
+                        <p:outputLabel value="#{myBundle.EditRecursosLabel_descripcionrecursos}" for="descripcionrecursos" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcionrecursos" value="#{recursosController.selected.descripcionrecursos}" title="#{myBundle.EditRecursosTitle_descripcionrecursos}" />
+
+                        <p:outputLabel value="#{myBundle.EditRecursosLabel_idpropuesta}" for="idpropuesta" />
+                        <p:selectOneMenu id="idpropuesta" value="#{recursosController.selected.idpropuesta}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{propuestaController.items}"
+                                           var="idpropuestaItem"
+                                           itemValue="#{idpropuestaItem}"
+                                           itemLabel="#{idpropuestaItem.idpropuesta.toString()}"
+                                           />
+                            <f:converter binding="#{propuestaConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{recursosController.save}" value="#{myBundle.Save}" update="display,:RecursosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RecursosEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="RecursosEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

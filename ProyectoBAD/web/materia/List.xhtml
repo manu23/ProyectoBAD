@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MateriaListForm">
+
+        <p:panel header="#{myBundle.ListMateriaTitle}">
+
+            <p:dataTable id="datalist" value="#{materiaController.items}" var="item"
+                         selectionMode="single" selection="#{materiaController.selected}"
+                         rowKey="#{item.materiaPK}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.materiaPK.codigomateria}" filterBy="#{item.materiaPK.codigomateria}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_materiaPK_codigomateria}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.materiaPK.codigomateria}"/>
+                </p:column>
+                <p:column sortBy="#{item.nombremateria}" filterBy="#{item.nombremateria}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_nombremateria}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombremateria}"/>
+                </p:column>
+                <p:column sortBy="#{item.uv}" filterBy="#{item.uv}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_uv}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.uv}"/>
+                </p:column>
+                <p:column sortBy="#{item.cicloimparte}" filterBy="#{item.cicloimparte}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_cicloimparte}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cicloimparte}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipomateria}" filterBy="#{item.tipomateria}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_tipomateria}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipomateria}"/>
+                </p:column>
+                <p:column sortBy="#{item.numhorasprac}" filterBy="#{item.numhorasprac}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_numhorasprac}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numhorasprac}"/>
+                </p:column>
+                <p:column sortBy="#{item.numhorasteo}" filterBy="#{item.numhorasteo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_numhorasteo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numhorasteo}"/>
+                </p:column>
+                <p:column sortBy="#{item.propuesta.idpropuesta}" filterBy="#{item.propuesta.idpropuesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_propuesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.propuesta.idpropuesta}"/>
+                </p:column>
+                <p:column sortBy="#{item.idpensum.idpensum}" filterBy="#{item.idpensum.idpensum}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_idpensum}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idpensum.idpensum}"/>
+                </p:column>
+                <p:column sortBy="#{item.iddocente.iddocente}" filterBy="#{item.iddocente.iddocente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_iddocente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.iddocente.iddocente}"/>
+                </p:column>
+                <p:column sortBy="#{item.prerrequisito.prerrequisitoPK}" filterBy="#{item.prerrequisito.prerrequisitoPK}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMateriaTitle_prerrequisito}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prerrequisito.prerrequisitoPK}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{materiaController.prepareCreate}" update=":MateriaCreateForm" oncomplete="MateriaCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":MateriaViewForm" oncomplete="MateriaViewDialog.show()" disabled="#{empty materiaController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MateriaEditForm" oncomplete="MateriaEditDialog.show()" disabled="#{empty materiaController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{materiaController.delete}" update=":growl,datalist" disabled="#{empty materiaController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

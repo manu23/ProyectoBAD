@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocenteEditDlg" widgetVar="DocenteEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditDocenteTitle}">
+
+            <h:form id="DocenteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{docenteController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditDocenteLabel_iddocente}" for="iddocente" />
+                        <h:outputText id="iddocente" value="#{docenteController.selected.iddocente}" />
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_nombredocente}" for="nombredocente" />
+                        <p:inputText id="nombredocente" value="#{docenteController.selected.nombredocente}" title="#{myBundle.EditDocenteTitle_nombredocente}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_nombredocente}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_apellidodocente}" for="apellidodocente" />
+                        <p:inputText id="apellidodocente" value="#{docenteController.selected.apellidodocente}" title="#{myBundle.EditDocenteTitle_apellidodocente}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_apellidodocente}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_especialidad}" for="especialidad" />
+                        <p:inputText id="especialidad" value="#{docenteController.selected.especialidad}" title="#{myBundle.EditDocenteTitle_especialidad}" />
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_cargo}" for="cargo" />
+                        <p:inputText id="cargo" value="#{docenteController.selected.cargo}" title="#{myBundle.EditDocenteTitle_cargo}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_cargo}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{docenteController.selected.email}" title="#{myBundle.EditDocenteTitle_email}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_email}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_iddepartamento}" for="iddepartamento" />
+                        <p:selectOneMenu id="iddepartamento" value="#{docenteController.selected.iddepartamento}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentoController.items}"
+                                           var="iddepartamentoItem"
+                                           itemValue="#{iddepartamentoItem}"
+                                           itemLabel="#{iddepartamentoItem.descripciondepartamento.toString()}"
+                                           />
+                            <f:converter binding="#{departamentoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{docenteController.save}" value="#{myBundle.Save}" update="display,:DocenteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DocenteEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="DocenteEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

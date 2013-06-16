@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CargoCreateDlg" widgetVar="CargoCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateCargoTitle}">
+
+            <h:form id="CargoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cargoController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_cargoPK_idcargo}" for="cargoPK_idcargo" />
+                        <p:inputText id="cargoPK_idcargo" value="#{cargoController.selected.cargoPK.idcargo}" title="#{myBundle.CreateCargoTitle_cargoPK_idcargo}" required="true" requiredMessage="#{myBundle.CreateCargoRequiredMessage_cargoPK_idcargo}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_nombrecargo}" for="nombrecargo" />
+                        <p:inputText id="nombrecargo" value="#{cargoController.selected.nombrecargo}" title="#{myBundle.CreateCargoTitle_nombrecargo}" />
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_fechainiciocargo}" for="fechainiciocargo" />
+                        <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_fechafincargo}" for="fechafincargo" />
+                        <p:calendar id="fechafincargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechafincargo}" title="#{myBundle.EditCargoTitle_fechafincargo}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_docente}" for="docente" />
+                        <p:selectOneMenu id="docente" value="#{cargoController.selected.docente}" required="true" requiredMessage="#{myBundle.EditCargoRequiredMessage_docente}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{docenteController.items}"
+                                           var="docenteItem"
+                                           itemValue="#{docenteItem}"
+                                           itemLabel="#{docenteItem.iddocente.toString()}"
+                                           />
+                            <f:converter binding="#{docenteConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateCargoLabel_departamento}" for="departamento" />
+                        <p:selectOneMenu id="departamento" value="#{cargoController.selected.departamento}" required="true" requiredMessage="#{myBundle.EditCargoRequiredMessage_departamento}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentoController.items}"
+                                           var="departamentoItem"
+                                           itemValue="#{departamentoItem}"
+                                           itemLabel="#{departamentoItem.descripciondepartamento.toString()}"
+                                           />
+                            <f:converter binding="#{departamentoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cargoController.saveNew}" value="#{myBundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CargoCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="CargoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

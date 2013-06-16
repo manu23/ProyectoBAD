@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RecursosListForm">
+
+        <p:panel header="#{myBundle.ListRecursosTitle}">
+
+            <p:dataTable id="datalist" value="#{recursosController.items}" var="item"
+                         selectionMode="single" selection="#{recursosController.selected}"
+                         rowKey="#{item.idrecursos}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idrecursos}" filterBy="#{item.idrecursos}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRecursosTitle_idrecursos}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idrecursos}"/>
+                </p:column>
+                <p:column sortBy="#{item.nombrerecursos}" filterBy="#{item.nombrerecursos}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRecursosTitle_nombrerecursos}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombrerecursos}"/>
+                </p:column>
+                <p:column sortBy="#{item.descripcionrecursos}" filterBy="#{item.descripcionrecursos}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRecursosTitle_descripcionrecursos}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcionrecursos}"/>
+                </p:column>
+                <p:column sortBy="#{item.idpropuesta.idpropuesta}" filterBy="#{item.idpropuesta.idpropuesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRecursosTitle_idpropuesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idpropuesta.idpropuesta}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{recursosController.prepareCreate}" update=":RecursosCreateForm" oncomplete="RecursosCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":RecursosViewForm" oncomplete="RecursosViewDialog.show()" disabled="#{empty recursosController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RecursosEditForm" oncomplete="RecursosEditDialog.show()" disabled="#{empty recursosController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{recursosController.delete}" update=":growl,datalist" disabled="#{empty recursosController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

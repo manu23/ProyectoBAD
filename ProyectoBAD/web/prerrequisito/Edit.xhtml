@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrerrequisitoEditDlg" widgetVar="PrerrequisitoEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditPrerrequisitoTitle}">
+
+            <h:form id="PrerrequisitoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{prerrequisitoController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.EditPrerrequisitoLabel_nombreprerrequisito}" for="nombreprerrequisito" />
+                        <p:inputText id="nombreprerrequisito" value="#{prerrequisitoController.selected.nombreprerrequisito}" title="#{myBundle.EditPrerrequisitoTitle_nombreprerrequisito}" />
+
+                        <h:outputLabel value="#{myBundle.EditPrerrequisitoLabel_materia}" for="materia" />
+                        <h:outputText id="materia" value="#{prerrequisitoController.selected.materia.materiaPK}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{prerrequisitoController.save}" value="#{myBundle.Save}" update="display,:PrerrequisitoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PrerrequisitoEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PrerrequisitoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

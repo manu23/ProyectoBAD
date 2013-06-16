@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PermisosListForm">
+
+        <p:panel header="#{myBundle.ListPermisosTitle}">
+
+            <p:dataTable id="datalist" value="#{permisosController.items}" var="item"
+                         selectionMode="single" selection="#{permisosController.selected}"
+                         rowKey="#{item.idpermiso}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idpermiso}" filterBy="#{item.idpermiso}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_idpermiso}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idpermiso}"/>
+                </p:column>
+                <p:column sortBy="#{item.tabla}" filterBy="#{item.tabla}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_tabla}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tabla}"/>
+                </p:column>
+                <p:column sortBy="#{item.crear}" filterBy="#{item.crear}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_crear}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.crear}"/>
+                </p:column>
+                <p:column sortBy="#{item.leer}" filterBy="#{item.leer}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_leer}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.leer}"/>
+                </p:column>
+                <p:column sortBy="#{item.actualizar}" filterBy="#{item.actualizar}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_actualizar}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.actualizar}"/>
+                </p:column>
+                <p:column sortBy="#{item.eliminar}" filterBy="#{item.eliminar}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_eliminar}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.eliminar}"/>
+                </p:column>
+                <p:column sortBy="#{item.idusuario.idusuario}" filterBy="#{item.idusuario.idusuario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisosTitle_idusuario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idusuario.idusuario}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{permisosController.prepareCreate}" update=":PermisosCreateForm" oncomplete="PermisosCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PermisosViewForm" oncomplete="PermisosViewDialog.show()" disabled="#{empty permisosController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PermisosEditForm" oncomplete="PermisosEditDialog.show()" disabled="#{empty permisosController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{permisosController.delete}" update=":growl,datalist" disabled="#{empty permisosController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

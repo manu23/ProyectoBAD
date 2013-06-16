@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PensumEditDlg" widgetVar="PensumEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditPensumTitle}">
+
+            <h:form id="PensumEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{pensumController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditPensumLabel_idpensum}" for="idpensum" />
+                        <h:outputText id="idpensum" value="#{pensumController.selected.idpensum}" />
+
+                        <p:outputLabel value="#{myBundle.EditPensumLabel_nombrecarrera}" for="nombrecarrera" />
+                        <p:inputText id="nombrecarrera" value="#{pensumController.selected.nombrecarrera}" title="#{myBundle.EditPensumTitle_nombrecarrera}" />
+
+                        <p:outputLabel value="#{myBundle.EditPensumLabel_anioaprobacion}" for="anioaprobacion" />
+                        <p:inputText id="anioaprobacion" value="#{pensumController.selected.anioaprobacion}" title="#{myBundle.EditPensumTitle_anioaprobacion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pensumController.save}" value="#{myBundle.Save}" update="display,:PensumListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PensumEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PensumEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

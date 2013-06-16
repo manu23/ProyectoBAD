@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PropuestaListForm">
+
+        <p:panel header="#{myBundle.ListPropuestaTitle}">
+
+            <p:dataTable id="datalist" value="#{propuestaController.items}" var="item"
+                         selectionMode="single" selection="#{propuestaController.selected}"
+                         rowKey="#{item.idpropuesta}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idpropuesta}" filterBy="#{item.idpropuesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_idpropuesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idpropuesta}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechapropuesta}" filterBy="#{item.fechapropuesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_fechapropuesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechapropuesta}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.detalle}" filterBy="#{item.detalle}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_detalle}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.detalle}"/>
+                </p:column>
+                <p:column sortBy="#{item.justificacion}" filterBy="#{item.justificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_justificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.justificacion}"/>
+                </p:column>
+                <p:column sortBy="#{item.aprobadojefe}" filterBy="#{item.aprobadojefe}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_aprobadojefe}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.aprobadojefe}"/>
+                </p:column>
+                <p:column sortBy="#{item.aprobadodirector}" filterBy="#{item.aprobadodirector}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_aprobadodirector}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.aprobadodirector}"/>
+                </p:column>
+                <p:column sortBy="#{item.aprobadojunta}" filterBy="#{item.aprobadojunta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_aprobadojunta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.aprobadojunta}"/>
+                </p:column>
+                <p:column sortBy="#{item.iddocente.iddocente}" filterBy="#{item.iddocente.iddocente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_iddocente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.iddocente.iddocente}"/>
+                </p:column>
+                <p:column sortBy="#{item.cargo.cargoPK}" filterBy="#{item.cargo.cargoPK}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPropuestaTitle_cargo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cargo.cargoPK}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{propuestaController.prepareCreate}" update=":PropuestaCreateForm" oncomplete="PropuestaCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PropuestaViewForm" oncomplete="PropuestaViewDialog.show()" disabled="#{empty propuestaController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PropuestaEditForm" oncomplete="PropuestaEditDialog.show()" disabled="#{empty propuestaController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{propuestaController.delete}" update=":growl,datalist" disabled="#{empty propuestaController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

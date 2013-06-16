@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DocenteListForm">
+
+        <p:panel header="#{myBundle.ListDocenteTitle}">
+
+            <p:dataTable id="datalist" value="#{docenteController.items}" var="item"
+                         selectionMode="single" selection="#{docenteController.selected}"
+                         rowKey="#{item.iddocente}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.iddocente}" filterBy="#{item.iddocente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_iddocente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.iddocente}"/>
+                </p:column>
+                <p:column sortBy="#{item.nombredocente}" filterBy="#{item.nombredocente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_nombredocente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombredocente}"/>
+                </p:column>
+                <p:column sortBy="#{item.apellidodocente}" filterBy="#{item.apellidodocente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_apellidodocente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellidodocente}"/>
+                </p:column>
+                <p:column sortBy="#{item.especialidad}" filterBy="#{item.especialidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_especialidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.especialidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.cargo}" filterBy="#{item.cargo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_cargo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cargo}"/>
+                </p:column>
+                <p:column sortBy="#{item.email}" filterBy="#{item.email}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_email}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.email}"/>
+                </p:column>
+                <p:column sortBy="#{item.iddepartamento.descripciondepartamento}" filterBy="#{item.iddepartamento.descripciondepartamento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_iddepartamento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.iddepartamento.descripciondepartamento}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{docenteController.prepareCreate}" update=":DocenteCreateForm" oncomplete="DocenteCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DocenteViewForm" oncomplete="DocenteViewDialog.show()" disabled="#{empty docenteController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DocenteEditForm" oncomplete="DocenteEditDialog.show()" disabled="#{empty docenteController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{docenteController.delete}" update=":growl,datalist" disabled="#{empty docenteController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

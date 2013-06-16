@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaViewDlg" widgetVar="MateriaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewMateriaTitle}">
+
+            <h:form id="MateriaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_materiaPK_codigomateria}"/>
+                        <h:outputText value="#{materiaController.selected.materiaPK.codigomateria}" title="#{myBundle.ViewMateriaTitle_materiaPK_codigomateria}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_nombremateria}"/>
+                        <h:outputText value="#{materiaController.selected.nombremateria}" title="#{myBundle.ViewMateriaTitle_nombremateria}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_uv}"/>
+                        <h:outputText value="#{materiaController.selected.uv}" title="#{myBundle.ViewMateriaTitle_uv}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_cicloimparte}"/>
+                        <h:outputText value="#{materiaController.selected.cicloimparte}" title="#{myBundle.ViewMateriaTitle_cicloimparte}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_tipomateria}"/>
+                        <h:outputText value="#{materiaController.selected.tipomateria}" title="#{myBundle.ViewMateriaTitle_tipomateria}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_numhorasprac}"/>
+                        <h:outputText value="#{materiaController.selected.numhorasprac}" title="#{myBundle.ViewMateriaTitle_numhorasprac}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_numhorasteo}"/>
+                        <h:outputText value="#{materiaController.selected.numhorasteo}" title="#{myBundle.ViewMateriaTitle_numhorasteo}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_horarioCollection}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_propuesta}"/>
+                        <h:outputText value="#{materiaController.selected.propuesta.idpropuesta}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_idpensum}"/>
+                        <h:outputText value="#{materiaController.selected.idpensum.idpensum}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_iddocente}"/>
+                        <h:outputText value="#{materiaController.selected.iddocente.iddocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewMateriaLabel_prerrequisito}"/>
+                        <h:outputText value="#{materiaController.selected.prerrequisito.prerrequisitoPK}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="MateriaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

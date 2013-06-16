@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocenteViewDlg" widgetVar="DocenteViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewDocenteTitle}">
+
+            <h:form id="DocenteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docenteController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_iddocente}"/>
+                        <h:outputText value="#{docenteController.selected.iddocente}" title="#{myBundle.ViewDocenteTitle_iddocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_nombredocente}"/>
+                        <h:outputText value="#{docenteController.selected.nombredocente}" title="#{myBundle.ViewDocenteTitle_nombredocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_apellidodocente}"/>
+                        <h:outputText value="#{docenteController.selected.apellidodocente}" title="#{myBundle.ViewDocenteTitle_apellidodocente}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_especialidad}"/>
+                        <h:outputText value="#{docenteController.selected.especialidad}" title="#{myBundle.ViewDocenteTitle_especialidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_cargo}"/>
+                        <h:outputText value="#{docenteController.selected.cargo}" title="#{myBundle.ViewDocenteTitle_cargo}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_email}"/>
+                        <h:outputText value="#{docenteController.selected.email}" title="#{myBundle.ViewDocenteTitle_email}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_materiaCollection}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_usuarioCollection}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_cargoCollection}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_iddepartamento}"/>
+                        <h:outputText value="#{docenteController.selected.iddepartamento.descripciondepartamento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_propuestaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="DocenteViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

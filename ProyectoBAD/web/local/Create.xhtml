@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocalCreateDlg" widgetVar="LocalCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateLocalTitle}">
+
+            <h:form id="LocalCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{localController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateLocalLabel_idlocal}" for="idlocal" />
+                        <p:inputText id="idlocal" value="#{localController.selected.idlocal}" title="#{myBundle.CreateLocalTitle_idlocal}" required="true" requiredMessage="#{myBundle.CreateLocalRequiredMessage_idlocal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLocalLabel_nombrelocal}" for="nombrelocal" />
+                        <p:inputText id="nombrelocal" value="#{localController.selected.nombrelocal}" title="#{myBundle.CreateLocalTitle_nombrelocal}" />
+
+                        <p:outputLabel value="#{myBundle.CreateLocalLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{localController.selected.capacidad}" title="#{myBundle.CreateLocalTitle_capacidad}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{localController.saveNew}" value="#{myBundle.Save}" update="display,:LocalListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LocalCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="LocalCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

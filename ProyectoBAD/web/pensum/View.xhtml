@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PensumViewDlg" widgetVar="PensumViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewPensumTitle}">
+
+            <h:form id="PensumViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pensumController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPensumLabel_idpensum}"/>
+                        <h:outputText value="#{pensumController.selected.idpensum}" title="#{myBundle.ViewPensumTitle_idpensum}"/>
+
+                        <h:outputText value="#{myBundle.ViewPensumLabel_nombrecarrera}"/>
+                        <h:outputText value="#{pensumController.selected.nombrecarrera}" title="#{myBundle.ViewPensumTitle_nombrecarrera}"/>
+
+                        <h:outputText value="#{myBundle.ViewPensumLabel_anioaprobacion}"/>
+                        <h:outputText value="#{pensumController.selected.anioaprobacion}" title="#{myBundle.ViewPensumTitle_anioaprobacion}"/>
+
+                        <h:outputText value="#{myBundle.ViewPensumLabel_materiaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PensumViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PensumCreateDlg" widgetVar="PensumCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreatePensumTitle}">
+
+            <h:form id="PensumCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pensumController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.CreatePensumLabel_idpensum}" for="idpensum" />
+                        <p:inputText id="idpensum" value="#{pensumController.selected.idpensum}" title="#{myBundle.CreatePensumTitle_idpensum}" required="true" requiredMessage="#{myBundle.CreatePensumRequiredMessage_idpensum}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePensumLabel_nombrecarrera}" for="nombrecarrera" />
+                        <p:inputText id="nombrecarrera" value="#{pensumController.selected.nombrecarrera}" title="#{myBundle.CreatePensumTitle_nombrecarrera}" />
+
+                        <p:outputLabel value="#{myBundle.CreatePensumLabel_anioaprobacion}" for="anioaprobacion" />
+                        <p:inputText id="anioaprobacion" value="#{pensumController.selected.anioaprobacion}" title="#{myBundle.CreatePensumTitle_anioaprobacion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pensumController.saveNew}" value="#{myBundle.Save}" update="display,:PensumListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PensumCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PensumCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateUsuarioTitle}">
+
+            <h:form id="UsuarioCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_idusuario}" for="idusuario" />
+                        <p:inputText id="idusuario" value="#{usuarioController.selected.idusuario}" title="#{myBundle.CreateUsuarioTitle_idusuario}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_idusuario}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usuarioController.selected.password}" title="#{myBundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_password}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_tipousuario}" for="tipousuario" />
+                        <p:inputText id="tipousuario" value="#{usuarioController.selected.tipousuario}" title="#{myBundle.CreateUsuarioTitle_tipousuario}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_tipousuario}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{usuarioController.selected.estado}" title="#{myBundle.CreateUsuarioTitle_estado}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_estado}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_iddocente}" for="iddocente" />
+                        <p:selectOneMenu id="iddocente" value="#{usuarioController.selected.iddocente}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{docenteController.items}"
+                                           var="iddocenteItem"
+                                           itemValue="#{iddocenteItem}"
+                                           itemLabel="#{iddocenteItem.iddocente.toString()}"
+                                           />
+                            <f:converter binding="#{docenteConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.saveNew}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
