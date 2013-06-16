@@ -10,19 +10,26 @@
         <h:form id="menuForm">
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.Maintenance}">
-                    <p:menuitem value="Cargo" outcome="/cargo/index" />
-                    <p:menuitem value="Departamento" outcome="/departamento/index" />
-                    <p:menuitem value="Docente" outcome="/docente/index" />
-                    <p:menuitem value="Horario" outcome="/horario/index" />
-                    <p:menuitem value="Local" outcome="/local/index" />
+                <p:submenu label="#{myBundle.MantenimientoU}">                   
+                    <p:menuitem value="Permisos" outcome="/permisos/index" />               
+                    <p:menuitem value="Usuario" outcome="/usuario/index" />
+                </p:submenu>                
+                <p:submenu label="#{myBundle.MantenimientoM}">                   
                     <p:menuitem value="Materia" outcome="/materia/index" />
-                    <p:menuitem value="Pensum" outcome="/pensum/index" />
-                    <p:menuitem value="Permisos" outcome="/permisos/index" />
                     <p:menuitem value="Prerrequisito" outcome="/prerrequisito/index" />
+                    <p:menuitem value="Pensum" outcome="/pensum/index" /> 
+                    <p:menuitem value="Horario" outcome="/horario/index" />
+                </p:submenu>  
+                <p:submenu label="#{myBundle.MantenimientoD}">                   
+                    <p:menuitem value="Docente" outcome="/docente/index" />
+                    <p:menuitem value="Cargo" outcome="/cargo/index" />
+                </p:submenu>
+                <p:submenu label="#{myBundle.MantenimientoP}">                   
                     <p:menuitem value="Propuesta" outcome="/propuesta/index" />
                     <p:menuitem value="Recursos" outcome="/recursos/index" />
-                    <p:menuitem value="Usuario" outcome="/usuario/index" />
+                </p:submenu>
+                <p:submenu label="#{myBundle.MantenimientoDEP}">                   
+                    <p:menuitem value="Departamento" outcome="/departamento/index" />
                 </p:submenu>
             </p:menubar>
         </h:form>
