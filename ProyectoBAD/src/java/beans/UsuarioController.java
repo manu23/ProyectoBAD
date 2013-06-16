@@ -14,7 +14,7 @@ public class UsuarioController extends AbstractController<Usuario> implements Se
 
     @EJB
     private UsuarioFacade ejbFacade;
-
+    
     public UsuarioController() {
         super(Usuario.class);
     }
