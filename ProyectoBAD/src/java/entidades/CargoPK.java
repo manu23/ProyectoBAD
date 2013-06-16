@@ -96,7 +96,8 @@ public class CargoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.CargoPK[ iddocente=" + iddocente + ", iddepartamento=" + iddepartamento + ", idcargo=" + idcargo + " ]";
+        //return "entidades.CargoPK[ iddocente=" + iddocente + ", iddepartamento=" + iddepartamento + ", idcargo=" + idcargo + " ]";
+        return idcargo;
     }
     
 }
