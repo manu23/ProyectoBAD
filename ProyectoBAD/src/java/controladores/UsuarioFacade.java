@@ -5,9 +5,11 @@
 package controladores;
 
 import entidades.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +27,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+    
+    //FUNCION ADICIONAL DE LOGIN
+    public List<Usuario> existeUser(String usr,String pass){
+        
+        Query consulta = em.createNamedQuery("Usuario.login"); //Se vrea la consulta de nombre Usuario.login
+        //Se le pasan los parametros
+        consulta.setParameter("idusuario", usr+" ");
+        consulta.setParameter("password", pass);
+        List<Usuario> resultado = consulta.getResultList();
+        return resultado;        
     }
       
 }

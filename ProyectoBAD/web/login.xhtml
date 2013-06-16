@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/plantillaLogin.xhtml">
+        <ui:define name="title">
+            <h:outputText value="LOGIN"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <p:panel header="Inicio de Sesion" style="text-align: center">
+                <h:form id="formLogin">
+                    <h:panelGrid columns="2" style="min-height: 300px; margin-left: auto;margin-right: auto">
+                        <p:outputLabel for="usuario" value="Usuario"/>
+                        <p:inputText id="usuario" required="true" requiredMessage="No ha ingresado un usuario" value="#{userActual.username}" />
+                        <p:outputLabel for="contrasena" value="Contrase&ntilde;a"/>
+                        <p:password id="contrasena" required="true" requiredMessage="No ha ingresado una contrase&ntilde;a" value="#{userActual.password}" />
+                        &nbsp;
+                        <p:commandButton value="Iniciar Sesion"  update=":formLogin,msj" actionListener="#{userActual.login}" />
+                        <p:growl id="msj"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
