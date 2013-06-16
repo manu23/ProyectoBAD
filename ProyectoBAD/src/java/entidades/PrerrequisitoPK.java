@@ -78,7 +78,8 @@ public class PrerrequisitoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.PrerrequisitoPK[ idpropuesta=" + idpropuesta + ", codigomateria=" + codigomateria + " ]";
+        //return "entidades.PrerrequisitoPK[ idpropuesta=" + idpropuesta + ", codigomateria=" + codigomateria + " ]";
+         return codigomateria;
     }
     
 }

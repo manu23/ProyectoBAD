@@ -78,7 +78,8 @@ public class MateriaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.MateriaPK[ idpropuesta=" + idpropuesta + ", codigomateria=" + codigomateria + " ]";
+        //return "entidades.MateriaPK[ idpropuesta=" + idpropuesta + ", codigomateria=" + codigomateria + " ]";
+        return codigomateria;
     }
     
 }
