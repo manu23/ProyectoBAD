@@ -96,6 +96,7 @@ public class UserActual {
         Password = "";
         user = null;
         logeado = false;
+        new Auxiliares().irA("faces/login.xhtml");
     }
     
     

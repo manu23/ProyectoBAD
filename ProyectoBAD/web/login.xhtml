@@ -4,26 +4,43 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:composition template="/resources/template/plantillaLogin.xhtml">
         <ui:define name="title">
             <h:outputText value="LOGIN"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <p:panel header="Inicio de Sesion" style="text-align: center">
-                <h:form id="formLogin">
-                    <h:panelGrid columns="2" style="min-height: 300px; margin-left: auto;margin-right: auto">
-                        <p:outputLabel for="usuario" value="Usuario"/>
-                        <p:inputText id="usuario" required="true" requiredMessage="No ha ingresado un usuario" value="#{userActual.username}" />
-                        <p:outputLabel for="contrasena" value="Contrase&ntilde;a"/>
-                        <p:password id="contrasena" required="true" requiredMessage="No ha ingresado una contrase&ntilde;a" value="#{userActual.password}" />
-                        &nbsp;
-                        <p:commandButton value="Iniciar Sesion"  update=":formLogin,msj" actionListener="#{userActual.login}" />
-                        <p:growl id="msj"/>
-                    </h:panelGrid>
-                </h:form>
-            </p:panel>
+            <c:choose>
+                <c:when test="${userActual.logeado == false}">
+                    <p:panel header="Inicio de Sesion" style="text-align: center">
+                        <h:form id="formLogin">
+                            <h:panelGrid columns="2" style="min-height: 300px; margin-left: auto;margin-right: auto">
+                                <p:outputLabel for="usuario" value="Usuario"/>
+                                <p:inputText id="usuario" required="true" requiredMessage="No ha ingresado un usuario" value="#{userActual.username}" />
+                                <p:outputLabel for="contrasena" value="Contrase&ntilde;a"/>
+                                <p:password id="contrasena" required="true" requiredMessage="No ha ingresado una contrase&ntilde;a" value="#{userActual.password}" />
+                                &nbsp;
+                                <p:commandButton value="Iniciar Sesion"  update=":formLogin,msj" actionListener="#{userActual.login}" />
+                                <p:growl id="msj"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:panel>
+                </c:when>
+                <c:otherwise>
+                    <h:form>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div style="min-height: 300px; text-align: center">
+                            <p style="font-size: 20px;" >Usted ya ha Iniciado Sesion.</p>
+                            <br/><br/>
+                            <p:commandButton value="Ir a Home" action="#{auxiliares.irA('faces/index.xhtml')}"  />
+                            <p:commandButton value="Cerrar Sesion" action="#{userActual.logout}"  />
+                        </div>
+                    </h:form>
+                </c:otherwise>
+            </c:choose>
+            
 
         </ui:define>
 

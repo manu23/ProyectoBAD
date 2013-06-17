@@ -29,7 +29,8 @@
                             </p:layoutUnit>
 
                             <p:layoutUnit position="west" size="50"/>
-                            <p:layoutUnit position="east" size="50"/>
+                            <p:layoutUnit position="east"  size="50" />
+                            
 
                             <p:layoutUnit position="south" size="60">
                                 <ui:insert name="footer"/>
@@ -47,22 +48,16 @@
 
                             <p:layoutUnit position="center">
                                    <h:form>
-                                        <div class="left_content" style="min-height: 300px; text-align: center">
-                                            No se ha identificado, por favor presione el boton para poder ingresar el usuario y la contraseña
-                                            <br/>
-                                            <br/>
-                                            <p:commandButton value="Autentificarse" 
-                                                             action="#{auxiliares.irA('faces/login.xhtml')}"
-                                                             />
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div style="min-height: 300px; text-align: center">
+                                            <p style="font-size: 20px;" >No se ha identificado, por favor presione el boton para poder ingresar el usuario y la contraseña</p>
+                                            <br/><br/>
+                                            <p:commandButton value="Autentificarse" action="#{auxiliares.irA('faces/login.xhtml')}"  />
                                         </div>
                                     </h:form>
                             </p:layoutUnit>
 
-                            <p:layoutUnit position="west" size="50"/>
-                            <p:layoutUnit position="east" size="50"/>
-
                             <p:layoutUnit position="south" size="60">
-                                <ui:insert name="footer"/>
                             </p:layoutUnit>
 
 
