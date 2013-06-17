@@ -17,26 +17,24 @@
 
                         <h:outputLabel value="#{myBundle.EditUsuarioLabel_idusuario}" for="idusuario" />
                         <h:outputText id="idusuario" value="#{usuarioController.selected.idusuario}" />
-
+                        
                         <p:outputLabel value="#{myBundle.EditUsuarioLabel_password}" for="password" />
                         <p:inputText id="password" value="#{usuarioController.selected.password}" title="#{myBundle.EditUsuarioTitle_password}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_password}"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuarioLabel_tipousuario}" for="tipousuario" />
-                        <p:inputText id="tipousuario" value="#{usuarioController.selected.tipousuario}" title="#{myBundle.EditUsuarioTitle_tipousuario}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_tipousuario}"/>
-
-                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{usuarioController.selected.estado}" title="#{myBundle.EditUsuarioTitle_estado}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_estado}"/>
-
-                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_iddocente}" for="iddocente" />
-                        <p:selectOneMenu id="iddocente" value="#{usuarioController.selected.iddocente}" >
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{docenteController.items}"
-                                           var="iddocenteItem"
-                                           itemValue="#{iddocenteItem}"
-                                           itemLabel="#{iddocenteItem.iddocente.toString()}"
-                                           />
-                            <f:converter binding="#{docenteConverter}"/>
+                        <p:selectOneMenu id="tipousuario" value="#{usuarioController.selected.tipousuario}">
+                            <f:selectItem itemLabel="Docente" itemValue="Docente" />  
+                            <f:selectItem itemLabel="Administrador" itemValue="Admin" />
                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{usuarioController.selected.estado}">
+                            <f:selectItem itemLabel="INACTIVO" itemValue="0" />  
+                            <f:selectItem itemLabel="ACTIVO" itemValue="1" />
+                        </p:selectOneMenu>
+                        
+                        <h:outputText value="#{myBundle.EditUsuarioLabel_iddocente}" />
+                        <h:outputText value="#{usuarioController.selected.iddocente.nombredocente} #{usuarioController.selected.iddocente.apellidodocente}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuarioController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioEditDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>

@@ -4,6 +4,7 @@
  */
 package beans.util;
 
+import java.math.BigInteger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -96,6 +97,30 @@ public class Auxiliares {
         context.addMessage(null, new FacesMessage(tipoMsj, msj, ""));
     }
     
+    
+    
+    //Esta funcion es para usarla en los labels o datatable 
+    //convierte un valor EJ:tipo BOOLEAN(BASE) o BigInteger(Programa)
+    //Para que en lugar de su valor original aparesca un string con significado
+    //Ejemplo en los booleanos en lugar que aparesca 0 y 1 aparecen NO y SI
+    //Note que se pasa la tabla porque el valor tiene distintos significados en c/u
+    
+    public String converterToString(String tabla,BigInteger valor){
+        String c="VALOR NO ENCONTRADO";
+        
+        if(tabla.equals("Permisos")){
+            switch(valor.intValue()){
+            case 0: return "NO";
+            case 1: return "SI";
+            }
+        }else if(tabla.equals("Usuarios")){
+            switch(valor.intValue()){
+            case 0: return "INACTIVO";
+            case 1: return "ACTIVO";
+            }
+        }            
+        return c;        
+    }
     
     
 }

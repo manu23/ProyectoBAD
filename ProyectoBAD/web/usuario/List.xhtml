@@ -18,8 +18,8 @@
                          rowsPerPageTemplate="10,20,30" paginatorPosition="bottom"
                          >
 
-                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowSelect"   update="viewButton editButton"/>
+                <p:ajax event="rowUnselect" update="viewButton editButton"/>
 
                 <p:column sortBy="#{item.idusuario}" filterBy="#{item.idusuario}">
                     <f:facet name="header">
@@ -43,19 +43,17 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListUsuarioTitle_estado}"/>
                     </f:facet>
-                    <h:outputText value="#{item.estado}"/>
+                    <h:outputText value="#{auxiliares.converterToString('Usuarios',item.estado)}" />
                 </p:column>
                 <p:column sortBy="#{item.iddocente.iddocente}" filterBy="#{item.iddocente.iddocente}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListUsuarioTitle_iddocente}"/>
                     </f:facet>
-                    <h:outputText value="#{item.iddocente.iddocente}"/>
+                    <h:outputText value="#{item.iddocente.nombredocente} #{item.iddocente.apellidodocente}"/>
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="UsuarioCreateDialog.show()"/>
                     <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":UsuarioViewForm" oncomplete="UsuarioViewDialog.show()" disabled="#{empty usuarioController.selected}"/>
                     <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuarioEditForm" oncomplete="UsuarioEditDialog.show()" disabled="#{empty usuarioController.selected}"/>
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{usuarioController.delete}" update=":growl,datalist" disabled="#{empty usuarioController.selected}"/>
                 </f:facet>
 
             </p:dataTable>

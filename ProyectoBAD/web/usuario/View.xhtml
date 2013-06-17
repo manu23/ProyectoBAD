@@ -28,9 +28,8 @@
                         <h:outputText value="#{usuarioController.selected.estado}" title="#{myBundle.ViewUsuarioTitle_estado}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuarioLabel_iddocente}"/>
-                        <h:outputText value="#{usuarioController.selected.iddocente.iddocente}"/>
+                        <h:outputText value="#{usuarioController.selected.iddocente.nombredocente} #{usuarioController.selected.iddocente.apellidodocente}"/>
 
-                        <h:outputText value="#{myBundle.ViewUsuarioLabel_permisosCollection}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="UsuarioViewDialog.hide()"/>
                 </h:panelGroup>
