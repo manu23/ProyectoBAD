@@ -1,3 +1,7 @@
+body{
+    color: red;
+}
+
 .ui-widget {
     font-size: 12px !important;
 }
@@ -15,5 +19,7 @@
 .ui-datatable-footer .ui-button{
     float: left;
  }
+ 
+ 
  
 

@@ -28,8 +28,8 @@
                                    <ui:insert name="body"/>
                             </p:layoutUnit>
 
-                            <p:layoutUnit position="west" size="50"/>
-                            <p:layoutUnit position="east"  size="50" />
+                            <p:layoutUnit  position="west" size="50" />
+                            <p:layoutUnit  position="east"  size="50" />
                             
 
                             <p:layoutUnit position="south" size="60">
@@ -50,9 +50,10 @@
                                    <h:form>
                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div style="min-height: 300px; text-align: center">
+                                            <h:graphicImage url="/faces/resources/images/prohibido.png" alt="ZONA RESTRINGIDA" />
                                             <p style="font-size: 20px;" >No se ha identificado, por favor presione el boton para poder ingresar el usuario y la contraseña</p>
                                             <br/><br/>
-                                            <p:commandButton value="Autentificarse" action="#{auxiliares.irA('faces/login.xhtml')}"  />
+                                            <p:commandButton value="Autentificarse" action="#{auxiliares.irA('faces/login.xhtml')}" style="color: red;" />
                                         </div>
                                     </h:form>
                             </p:layoutUnit>

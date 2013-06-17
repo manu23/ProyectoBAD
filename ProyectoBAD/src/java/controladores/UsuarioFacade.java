@@ -34,7 +34,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         
         Query consulta = em.createNamedQuery("Usuario.login"); //Se vrea la consulta de nombre Usuario.login
         //Se le pasan los parametros
-        consulta.setParameter("idusuario", usr+" ");
+        consulta.setParameter("idusuario", usr);
         consulta.setParameter("password", pass);
         List<Usuario> resultado = consulta.getResultList();
         return resultado;        
