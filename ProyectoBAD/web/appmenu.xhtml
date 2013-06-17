@@ -10,7 +10,7 @@
         <h:form id="menuForm">
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.MantenimientoU}">                   
+                <p:submenu label="#{myBundle.MantenimientoU}" rendered="#{userActual.esAdmin}">                   
                     <p:menuitem value="Permisos" outcome="/permisos/index" />               
                     <p:menuitem value="Usuario" outcome="/usuario/index" />
                 </p:submenu>                

@@ -1,7 +1,3 @@
-body{
-    color: red;
-}
-
 .ui-widget {
     font-size: 12px !important;
 }
@@ -20,6 +16,6 @@ body{
     float: left;
  }
  
- 
- 
-
+ .ui-commandButton{
+     color: red;
+ }

@@ -29,6 +29,7 @@ public class UserActual {
     String Username;
     String Password;
     boolean logeado = false;
+    boolean esAdmin=false;
     
     //Constructor del BEAN
     public UserActual() {
@@ -74,15 +75,30 @@ public class UserActual {
     public void setLogeado(boolean logeado) {
         this.logeado = logeado;
     }
+
+    public boolean isEsAdmin() {
+        return esAdmin;
+    }
+
+    public void setEsAdmin(boolean esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+    
     
     
     
     //FUNCIONES PROPIAS DE LA CLASE
+    
     public void login(){
         List<Usuario> userX = ejbFacade.existeUser(Username, Password);
         if(!userX.isEmpty()){
             user = userX.get(0);
             logeado = true;
+            if(user.getTipousuario().equals("Admin")){
+                esAdmin = true;;
+            }else{
+                esAdmin = false;
+            }
             new Auxiliares().irA("faces/index.xhtml");
         }else{
             Password = "";
@@ -96,6 +112,7 @@ public class UserActual {
         Password = "";
         user = null;
         logeado = false;
+        esAdmin = false;
         new Auxiliares().irA("faces/login.xhtml");
     }
     
