@@ -22,10 +22,10 @@
                         <p:inputText id="nombrecargo" value="#{cargoController.selected.nombrecargo}" title="#{myBundle.EditCargoTitle_nombrecargo}" />
 
                         <p:outputLabel value="#{myBundle.EditCargoLabel_fechainiciocargo}" for="fechainiciocargo" />
-                        <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
+                        <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
 
                         <p:outputLabel value="#{myBundle.EditCargoLabel_fechafincargo}" for="fechafincargo" />
-                        <p:calendar id="fechafincargo" pattern="MM/dd/yyyy HH:mm:ss" value="#{cargoController.selected.fechafincargo}" title="#{myBundle.EditCargoTitle_fechafincargo}"  showOn="button"/>
+                        <p:calendar id="fechafincargo" pattern="MM/dd/yyyy" value="#{cargoController.selected.fechafincargo}" title="#{myBundle.EditCargoTitle_fechafincargo}"  showOn="button"/>
 
                         <h:outputLabel value="#{myBundle.EditCargoLabel_docente}" for="docente" />
                         <h:outputText id="docente" value="#{cargoController.selected.docente.iddocente}"/>

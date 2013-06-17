@@ -19,7 +19,7 @@
                         <h:outputText id="idpropuesta" value="#{propuestaController.selected.idpropuesta}" />
 
                         <p:outputLabel value="#{myBundle.EditPropuestaLabel_fechapropuesta}" for="fechapropuesta" />
-                        <p:calendar id="fechapropuesta" pattern="MM/dd/yyyy HH:mm:ss" value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.EditPropuestaTitle_fechapropuesta}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_fechapropuesta}" showOn="button"/>
+                        <p:calendar id="fechapropuesta" pattern="MM/dd/yyyy" value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.EditPropuestaTitle_fechapropuesta}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_fechapropuesta}" showOn="button"/>
 
                         <p:outputLabel value="#{myBundle.EditPropuestaLabel_detalle}" for="detalle" />
                         <p:inputTextarea rows="4" cols="30" id="detalle" value="#{propuestaController.selected.detalle}" title="#{myBundle.EditPropuestaTitle_detalle}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_detalle}"/>
