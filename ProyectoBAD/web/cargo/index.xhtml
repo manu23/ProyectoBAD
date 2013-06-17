@@ -18,5 +18,13 @@
         <ui:include src="Create.xhtml"/>
 
     </ui:define>
+    <ui:define name="footer">
+            <h:form>
+                <p:stack icon="../resources/images/stack.png">  
+                    <p:menuitem value="Home" icon="../resources/images/home.png" url="/faces/index.xhtml"/>
+                    <p:menuitem value="Exit" icon="../resources/images/down.png" action="#{userActual.logout}"/>
+                </p:stack> 
+            </h:form>
+    </ui:define>
 
 </ui:composition>
