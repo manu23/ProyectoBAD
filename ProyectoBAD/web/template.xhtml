@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
@@ -13,26 +14,68 @@
 
     <h:body>
 
-        <p:growl id="growl" life="3000"/>
+        <c:choose>
+                <c:when test="${userActual.logeado == true}">
+                        <p:growl id="growl" life="3000"/>
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
-                <!-- Menu here. Also a layout and a way to log a user out -->
-                <ui:include src="/appmenu.xhtml"/>
-            </p:layoutUnit>
+                        <p:layout fullPage="true">
+                            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
+                                <!-- Menu here. Also a layout and a way to log a user out -->
+                                <ui:include src="/appmenu.xhtml"/>
+                            </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="50"/>
-            <p:layoutUnit position="east" size="50"/>
+                            <p:layoutUnit position="center">
+                                   <ui:insert name="body"/>
+                            </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
+                            <p:layoutUnit position="west" size="50"/>
+                            <p:layoutUnit position="east" size="50"/>
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
+                            <p:layoutUnit position="south" size="60">
+                                <ui:insert name="footer"/>
+                            </p:layoutUnit>
 
-        </p:layout>
+
+                        </p:layout>
+                </c:when>
+                
+                <c:otherwise>
+                    
+                    <p:layout fullPage="true">
+                            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
+                            </p:layoutUnit>
+
+                            <p:layoutUnit position="center">
+                                   <h:form>
+                                        <div class="left_content" style="min-height: 300px; text-align: center">
+                                            No se ha identificado, por favor presione el boton para poder ingresar el usuario y la contraseña
+                                            <br/>
+                                            <br/>
+                                            <p:commandButton value="Autentificarse" 
+                                                             action="#{auxiliares.irA('faces/login.xhtml')}"
+                                                             />
+                                        </div>
+                                    </h:form>
+                            </p:layoutUnit>
+
+                            <p:layoutUnit position="west" size="50"/>
+                            <p:layoutUnit position="east" size="50"/>
+
+                            <p:layoutUnit position="south" size="60">
+                                <ui:insert name="footer"/>
+                            </p:layoutUnit>
+
+
+                        </p:layout>
+                    
+                    
+                </c:otherwise>
+        </c:choose>
+        
+            
+            
+
+            
 
     </h:body>
 
