@@ -58,8 +58,8 @@
                             <f:converter binding="#{cargoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{propuestaController.saveNew}" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="PropuestaCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{propuestaController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PropuestaCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>
