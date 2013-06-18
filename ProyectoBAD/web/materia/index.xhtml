@@ -33,17 +33,23 @@
     </ui:define>
     
     <ui:define name="right" >
-        
-            <h:form id="frmButton">
-                <br/>
-                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{materiaController.prepareCreate}" update=":MateriaCreateForm" oncomplete="MateriaCreateDialog.show()" rendered="#{userActual.puedeCrear('MATERIA')}" style="width: 85px;"/>
-                <br/><br/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":MateriaViewForm" oncomplete="MateriaViewDialog.show()" disabled="#{empty materiaController.selected}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MateriaEditForm" oncomplete="MateriaEditDialog.show()" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeActualizar('MATERIA')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{materiaController.delete}" update=":growl,:MateriaListForm:datalist" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeEliminar('MATERIA')}" style="width: 85px;" />
-            </h:form>
+         <c:choose>
+             <c:when test="#{userActual.puedeLeer('MATERIA') == true}" >
+                <h:form id="frmButton">
+                    <br/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{materiaController.prepareCreate}" update=":MateriaCreateForm" oncomplete="MateriaCreateDialog.show()" rendered="#{userActual.puedeCrear('MATERIA')}" style="width: 85px;"/>
+                    <br/><br/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":MateriaViewForm" oncomplete="MateriaViewDialog.show()" disabled="#{empty materiaController.selected}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MateriaEditForm" oncomplete="MateriaEditDialog.show()" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeActualizar('MATERIA')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{materiaController.delete}" update=":growl,:MateriaListForm:datalist" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeEliminar('MATERIA')}" style="width: 85px;" />
+                </h:form>
+             </c:when>
+             <c:otherwise>
+                 
+             </c:otherwise>
+         </c:choose>
     </ui:define>
     
     

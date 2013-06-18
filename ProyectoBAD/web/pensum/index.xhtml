@@ -34,13 +34,20 @@
     
         
     <ui:define name="footer">
-                    <h:form>
-                <p:stack icon="../resources/images/stack.png">  
-                    <p:menuitem value="Home" icon="../resources/images/home.png" url="/faces/index.xhtml"/>
-                    <p:menuitem value="Password" icon="../resources/images/key.png" url="/faces/config/index.xhtml"/>
-                    <p:menuitem value="Exit" icon="../resources/images/down.png" action="#{userActual.logout}"/>
-                </p:stack> 
-            </h:form>
+        <c:choose>
+            <c:when test="#{userActual.puedeLeer('PENSUM') == true}" >
+                <h:form>
+                    <p:stack icon="../resources/images/stack.png">  
+                        <p:menuitem value="Home" icon="../resources/images/home.png" url="/faces/index.xhtml"/>
+                        <p:menuitem value="Password" icon="../resources/images/key.png" url="/faces/config/index.xhtml"/>
+                        <p:menuitem value="Exit" icon="../resources/images/down.png" action="#{userActual.logout}"/>
+                    </p:stack> 
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                
+            </c:otherwise>
+        </c:choose>
     </ui:define>
 
 </ui:composition>

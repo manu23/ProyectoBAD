@@ -33,17 +33,23 @@
     </ui:define>
     
     <ui:define name="right" >
-        
-            <h:form id="frmButton">
-                <br/>
-                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{prerrequisitoController.prepareCreate}" update=":PrerrequisitoCreateForm" oncomplete="PrerrequisitoCreateDialog.show()" rendered="#{userActual.puedeCrear('PRERREQUISITO')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PrerrequisitoViewForm" oncomplete="PrerrequisitoViewDialog.show()" disabled="#{empty prerrequisitoController.selected}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PrerrequisitoEditForm" oncomplete="PrerrequisitoEditDialog.show()" disabled="#{empty prerrequisitoController.selected}" rendered="#{userActual.puedeActualizar('PRERREQUISITO')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{prerrequisitoController.delete}" update=":growl,:PrerrequisitoListForm:datalist" disabled="#{empty prerrequisitoController.selected}" rendered="#{userActual.puedeEliminar('PRERREQUISITO')}" style="width: 85px;" />
-            </h:form>
+        <c:choose>
+            <c:when test="#{userActual.puedeLeer('PRERREQUISITO') == true}" >
+                <h:form id="frmButton">
+                    <br/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{prerrequisitoController.prepareCreate}" update=":PrerrequisitoCreateForm" oncomplete="PrerrequisitoCreateDialog.show()" rendered="#{userActual.puedeCrear('PRERREQUISITO')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PrerrequisitoViewForm" oncomplete="PrerrequisitoViewDialog.show()" disabled="#{empty prerrequisitoController.selected}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PrerrequisitoEditForm" oncomplete="PrerrequisitoEditDialog.show()" disabled="#{empty prerrequisitoController.selected}" rendered="#{userActual.puedeActualizar('PRERREQUISITO')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{prerrequisitoController.delete}" update=":growl,:PrerrequisitoListForm:datalist" disabled="#{empty prerrequisitoController.selected}" rendered="#{userActual.puedeEliminar('PRERREQUISITO')}" style="width: 85px;" />
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                
+            </c:otherwise>
+        </c:choose>
     </ui:define>
     
     <ui:define name="footer">

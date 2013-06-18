@@ -31,17 +31,24 @@
     </ui:define>
     
     <ui:define name="right" >
+        <c:choose>
+            <c:when test="#{userActual.puedeLeer('DEPARTAMENTO') == true}" >
         
-            <h:form id="frmButton">
-                <br/>
-                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{departamentoController.prepareCreate}" update=":DepartamentoCreateForm" oncomplete="DepartamentoCreateDialog.show()" rendered="#{userActual.puedeCrear('DEPARTAMENTO')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DepartamentoViewForm" oncomplete="DepartamentoViewDialog.show()" disabled="#{empty departamentoController.selected}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DepartamentoEditForm" oncomplete="DepartamentoEditDialog.show()" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeActualizar('DEPARTAMENTO')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{departamentoController.delete}" update=":growl,:DepartamentoListForm:datalist" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeEliminar('DEPARTAMENTO')}" style="width: 85px;" />
-           </h:form>
+                <h:form id="frmButton">
+                    <br/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{departamentoController.prepareCreate}" update=":DepartamentoCreateForm" oncomplete="DepartamentoCreateDialog.show()" rendered="#{userActual.puedeCrear('DEPARTAMENTO')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DepartamentoViewForm" oncomplete="DepartamentoViewDialog.show()" disabled="#{empty departamentoController.selected}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DepartamentoEditForm" oncomplete="DepartamentoEditDialog.show()" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeActualizar('DEPARTAMENTO')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{departamentoController.delete}" update=":growl,:DepartamentoListForm:datalist" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeEliminar('DEPARTAMENTO')}" style="width: 85px;" />
+               </h:form>
+            </c:when>
+            <c:otherwise>
+                
+            </c:otherwise>
+        </c:choose>
     </ui:define>
     
     <ui:define name="footer">

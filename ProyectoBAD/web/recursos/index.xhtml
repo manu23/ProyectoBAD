@@ -33,17 +33,23 @@
     </ui:define>
     
     <ui:define name="right" >
-        
-            <h:form id="frmButton">
-                <br/>
-                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{recursosController.prepareCreate}" update=":RecursosCreateForm" oncomplete="RecursosCreateDialog.show()" rendered="#{userActual.puedeCrear('RECURSOS')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":RecursosViewForm" oncomplete="RecursosViewDialog.show()" disabled="#{empty recursosController.selected}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RecursosEditForm" oncomplete="RecursosEditDialog.show()" disabled="#{empty recursosController.selected}" rendered="#{userActual.puedeActualizar('RECURSOS')}" style="width: 85px;" />
-                <br/><br/>
-                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{recursosController.delete}" update=":growl,:RecursosListForm:datalist" disabled="#{empty recursosController.selected}" rendered="#{userActual.puedeEliminar('RECURSOS')}" style="width: 85px;" />
-            </h:form>
+        <c:choose>
+            <c:when test="#{userActual.puedeLeer('RECURSOS') == true}" >
+                <h:form id="frmButton">
+                    <br/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{recursosController.prepareCreate}" update=":RecursosCreateForm" oncomplete="RecursosCreateDialog.show()" rendered="#{userActual.puedeCrear('RECURSOS')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":RecursosViewForm" oncomplete="RecursosViewDialog.show()" disabled="#{empty recursosController.selected}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RecursosEditForm" oncomplete="RecursosEditDialog.show()" disabled="#{empty recursosController.selected}" rendered="#{userActual.puedeActualizar('RECURSOS')}" style="width: 85px;" />
+                    <br/><br/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{recursosController.delete}" update=":growl,:RecursosListForm:datalist" disabled="#{empty recursosController.selected}" rendered="#{userActual.puedeEliminar('RECURSOS')}" style="width: 85px;" />
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                
+            </c:otherwise>
+        </c:choose>
     </ui:define>
     
     <ui:define name="footer">
