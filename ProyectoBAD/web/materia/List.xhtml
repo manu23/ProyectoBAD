@@ -88,10 +88,10 @@
                     <h:outputText value="#{item.prerrequisito.prerrequisitoPK}"/>
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{materiaController.prepareCreate}" update=":MateriaCreateForm" oncomplete="MateriaCreateDialog.show()"/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{materiaController.prepareCreate}" update=":MateriaCreateForm" oncomplete="MateriaCreateDialog.show()" rendered="#{userActual.puedeCrear('MATERIA')}" />
                     <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":MateriaViewForm" oncomplete="MateriaViewDialog.show()" disabled="#{empty materiaController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MateriaEditForm" oncomplete="MateriaEditDialog.show()" disabled="#{empty materiaController.selected}"/>
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{materiaController.delete}" update=":growl,datalist" disabled="#{empty materiaController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MateriaEditForm" oncomplete="MateriaEditDialog.show()" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeActualizar('MATERIA')}" />
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{materiaController.delete}" update=":growl,datalist" disabled="#{empty materiaController.selected}" rendered="#{userActual.puedeEliminar('MATERIA')}" />
                 </f:facet>
 
             </p:dataTable>

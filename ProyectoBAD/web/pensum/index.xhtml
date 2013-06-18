@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                template="/template.xhtml">
+                template="/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="title">
         <h:outputText value="#{myBundle.PensumTitle}"/>
@@ -12,10 +14,21 @@
 
     <ui:define name="body">
 
-        <ui:include src="List.xhtml"/>
-        <ui:include src="View.xhtml"/>
-        <ui:include src="Edit.xhtml"/>
-        <ui:include src="Create.xhtml"/>
+        <c:choose>
+            <c:when test="#{userActual.puedeLeer('PENSUM') == true}" >
+                <ui:include src="List.xhtml"/>
+                <ui:include src="View.xhtml"/>
+                <ui:include src="Edit.xhtml"/>
+                <ui:include src="Create.xhtml"/>
+            </c:when>
+            <c:otherwise>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div style="min-height: 300px; text-align: center">
+                    <h:graphicImage url="/faces/resources/images/prohibido.png" alt="ZONA RESTRINGIDA" />
+                    <p style="font-size: 20px;" >LO SENTIMOS USTED NO TIENE ACCESO A ESTA TABLA</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
 
     </ui:define>
     

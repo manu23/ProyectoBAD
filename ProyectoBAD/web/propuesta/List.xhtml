@@ -78,10 +78,10 @@
                     <h:outputText value="#{item.cargo.cargoPK}"/>
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{propuestaController.prepareCreate}" update=":PropuestaCreateForm" oncomplete="PropuestaCreateDialog.show()"/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{propuestaController.prepareCreate}" update=":PropuestaCreateForm" oncomplete="PropuestaCreateDialog.show()" rendered="#{userActual.puedeCrear('PROPUESTA')}" />
                     <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PropuestaViewForm" oncomplete="PropuestaViewDialog.show()" disabled="#{empty propuestaController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PropuestaEditForm" oncomplete="PropuestaEditDialog.show()" disabled="#{empty propuestaController.selected}"/>
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{propuestaController.delete}" update=":growl,datalist" disabled="#{empty propuestaController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PropuestaEditForm" oncomplete="PropuestaEditDialog.show()" disabled="#{empty propuestaController.selected}" rendered="#{userActual.puedeActualizar('PROPUESTA')}" />
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{propuestaController.delete}" update=":growl,datalist" disabled="#{empty propuestaController.selected}" rendered="#{userActual.puedeEliminar('PROPUESTA')}" />
                 </f:facet>
 
             </p:dataTable>

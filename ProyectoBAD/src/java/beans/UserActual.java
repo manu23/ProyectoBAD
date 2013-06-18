@@ -6,7 +6,10 @@ package beans;
 
 import beans.util.Auxiliares;
 import controladores.UsuarioFacade;
+import entidades.Permisos;
 import entidades.Usuario;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -21,6 +24,7 @@ import javax.faces.bean.SessionScoped;
 public class UserActual {
     //Variables
     private Usuario user;     //Entidad USUARIO (DE SESION)
+    private List<Permisos> userPermisos; //Guarda los permisos del usuario actual
     @EJB
     private UsuarioFacade ejbFacade; // CONTROLADOR
     
@@ -42,6 +46,14 @@ public class UserActual {
 
     public void setUser(Usuario user) {
         this.user = user;
+    }
+
+    public List<Permisos> getUserPermisos() {
+        return userPermisos;
+    }
+
+    public void setUserPermisos(List<Permisos> userPermisos) {
+        this.userPermisos = userPermisos;
     }
 
     public UsuarioFacade getEjbFacade() {
@@ -89,16 +101,20 @@ public class UserActual {
     
     //FUNCIONES PROPIAS DE LA CLASE
     
+    //FUNCION INICIAR SESION
     public void login(){
         List<Usuario> userX = ejbFacade.existeUser(Username, Password);
         if(!userX.isEmpty()){
             user = userX.get(0);
             logeado = true;
+            //Verifica si es un usuario del tipo Administrador
             if(user.getTipousuario().equals("Admin")){
-                esAdmin = true;;
+                esAdmin = true;
             }else{
                 esAdmin = false;
             }
+            //Guardo los permisos del usuario
+            userPermisos = new ArrayList<Permisos>(user.getPermisosCollection()); // Crea un ArrayList en base a la colección de permisos
             new Auxiliares().irA("faces/index.xhtml");
         }else{
             Password = "";
@@ -107,14 +123,74 @@ public class UserActual {
         }
     }
     
+    //FUNCION DE CERRAR SESION
     public void logout(){
         Username = "";
         Password = "";
         user = null;
+        userPermisos=null;
         logeado = false;
         esAdmin = false;
         new Auxiliares().irA("faces/login.xhtml");
     }
     
+    //FUNCION que retorna los permisos de LEER del usuario actual de una tabla especifica
+    // NOTA: nombre de la tabla debe ir en MAYUSCULA de lo contrario siempre devolvera false
+    public boolean puedeLeer(String tabla){
+        boolean permiso = true;
+        for(int i=0; i< userPermisos.size();i++){
+            if(userPermisos.get(i).getTabla().equals(tabla)){
+                if(userPermisos.get(i).getLeer().intValue() == 1)
+                    permiso = true;
+                else
+                    permiso =false;
+            }
+        }
+        return permiso;
+    }
     
+    //FUNCION que retorna los permisos de ACTUALIZAR del usuario actual de una tabla especifica
+    // NOTA: nombre de la tabla debe ir en MAYUSCULA de lo contrario siempore devolvera false
+    public boolean puedeActualizar(String tabla){
+        boolean permiso = true;
+        for(int i=0; i< userPermisos.size();i++){
+            if(userPermisos.get(i).getTabla().equals(tabla)){
+                if(userPermisos.get(i).getActualizar().intValue() == 1)
+                    permiso = true;
+                else
+                    permiso =false;
+            }
+        }
+        return permiso;
+    }
+    
+    //FUNCION que retorna los permisos de CREAR del usuario actual de una tabla especifica
+    // NOTA: nombre de la tabla debe ir en MAYUSCULA de lo contrario siempore devolvera false
+    public boolean puedeCrear(String tabla){
+        boolean permiso = true;
+        for(int i=0; i< userPermisos.size();i++){
+            if(userPermisos.get(i).getTabla().equals(tabla)){
+                if(userPermisos.get(i).getCrear().intValue() == 1)
+                    permiso = true;
+                else
+                    permiso =false;
+            }
+        }
+        return permiso;
+    }
+    
+    //FUNCION que retorna los permisos de ELIMINAR del usuario actual de una tabla especifica
+    // NOTA: nombre de la tabla debe ir en MAYUSCULA de lo contrario siempore devolvera false
+    public boolean puedeEliminar(String tabla){
+        boolean permiso = true;
+        for(int i=0; i< userPermisos.size();i++){
+            if(userPermisos.get(i).getTabla().equals(tabla)){
+                if(userPermisos.get(i).getEliminar().intValue() == 1)
+                    permiso = true;
+                else
+                    permiso =false;
+            }
+        }
+        return permiso;
+    }
 }

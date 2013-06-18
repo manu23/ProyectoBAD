@@ -64,10 +64,10 @@
                     <h:outputText value="#{item.iddepartamento.descripciondepartamento}"/>
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{docenteController.prepareCreate}" update=":DocenteCreateForm" oncomplete="DocenteCreateDialog.show()"/>
-                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DocenteViewForm" oncomplete="DocenteViewDialog.show()" disabled="#{empty docenteController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DocenteEditForm" oncomplete="DocenteEditDialog.show()" disabled="#{empty docenteController.selected}"/>
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{docenteController.delete}" update=":growl,datalist" disabled="#{empty docenteController.selected}"/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{docenteController.prepareCreate}" update=":DocenteCreateForm" oncomplete="DocenteCreateDialog.show()" rendered="#{userActual.puedeCrear('DOCENTE')}" />
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DocenteViewForm" oncomplete="DocenteViewDialog.show()" disabled="#{empty docenteController.selected}" />
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DocenteEditForm" oncomplete="DocenteEditDialog.show()" disabled="#{empty docenteController.selected}" rendered="#{userActual.puedeActualizar('DOCENTE')}" />
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{docenteController.delete}" update=":growl,datalist" disabled="#{empty docenteController.selected}" rendered="#{userActual.puedeEliminar('DOCENTE')}" />
                 </f:facet>
 
             </p:dataTable>

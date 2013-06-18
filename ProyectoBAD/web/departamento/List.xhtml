@@ -40,10 +40,10 @@
                     <h:outputText value="#{item.descripciondepartamento}"/>
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{departamentoController.prepareCreate}" update=":DepartamentoCreateForm" oncomplete="DepartamentoCreateDialog.show()"/>
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{departamentoController.prepareCreate}" update=":DepartamentoCreateForm" oncomplete="DepartamentoCreateDialog.show()" rendered="#{userActual.puedeCrear('DEPARTAMENTO')}"/>
                     <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DepartamentoViewForm" oncomplete="DepartamentoViewDialog.show()" disabled="#{empty departamentoController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DepartamentoEditForm" oncomplete="DepartamentoEditDialog.show()" disabled="#{empty departamentoController.selected}"/>
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{departamentoController.delete}" update=":growl,datalist" disabled="#{empty departamentoController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DepartamentoEditForm" oncomplete="DepartamentoEditDialog.show()" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeActualizar('DEPARTAMENTO')}" />
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{departamentoController.delete}" update=":growl,datalist" disabled="#{empty departamentoController.selected}" rendered="#{userActual.puedeEliminar('DEPARTAMENTO')}" />
                 </f:facet>
 
             </p:dataTable>

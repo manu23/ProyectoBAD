@@ -16,6 +16,6 @@
     float: left;
  }
  
- .ui-commandButton{
-     color: red;
- }
+ .ui-widget-shadow{
+    background: red;
+}
