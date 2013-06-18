@@ -15,7 +15,9 @@
     <h:body>
 
         <c:choose>
-                <c:when test="${userActual.logeado == true}">
+            <c:when test="${userActual.logeado==true}" >
+                <c:if test="${userActual.userActivo==true}">
+                                   
                         <p:growl id="growl" life="3000"/>
 
                         <p:layout fullPage="true">
@@ -47,7 +49,32 @@
 
 
                         </p:layout>
+                </c:if>
+                <c:if test="${userActual.userActivo==false}">
+                    <p:layout fullPage="true">
+                            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
+                            </p:layoutUnit>
+
+                            <p:layoutUnit position="center">
+                                   <h:form>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div style="min-height: 300px; text-align: center">
+                                            <h:graphicImage url="/faces/resources/images/prohibido.png" alt="ZONA RESTRINGIDA" />
+                                            <p style="font-size: 20px;" >USUARIO INACTIVO , FAVOR CONSULTE CON EL ADMINISTRADOR</p>
+                                            <p:commandButton value="Cerrar Sesion" action="#{userActual.logout}"  />
+                                        </div>
+                                    </h:form>
+                            </p:layoutUnit>
+
+                            <p:layoutUnit position="south" size="60">
+                            </p:layoutUnit>
+
+
+                        </p:layout>
+                </c:if>
                 </c:when>
+                
+                
                 
                 <c:otherwise>
                     

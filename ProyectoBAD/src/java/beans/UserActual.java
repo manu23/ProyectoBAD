@@ -10,7 +10,6 @@ import controladores.UsuarioFacade;
 import entidades.Permisos;
 import entidades.Usuario;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,6 +38,7 @@ public class UserActual {
     String Password;
     boolean logeado = false;
     boolean esAdmin=false;
+    boolean userActivo=true;
     
     //variables de cambio de password
     String actualPass;
@@ -106,6 +106,16 @@ public class UserActual {
         this.esAdmin = esAdmin;
     }
 
+    public boolean isUserActivo() {
+        return userActivo;
+    }
+
+    public void setUserActivo(boolean userActivo) {
+        this.userActivo = userActivo;
+    }
+    
+    
+
     public String getActualPass() {
         return actualPass;
     }
@@ -137,6 +147,9 @@ public class UserActual {
     
     //FUNCION INICIAR SESION
     public void login(){
+        try {
+         Password = new Auxiliares().getMD5(Password);
+       }catch (Exception ex){new Auxiliares().setMsj(3, "ERROR AL ENCRIPTAR");}
         List<Usuario> userX = ejbFacade.existeUser(Username, Password);
         if(!userX.isEmpty()){
             user = userX.get(0);
@@ -150,13 +163,20 @@ public class UserActual {
             }else{
                 esAdmin = false;
             }
+            //Verifica si es un usuario Activo
+            if(user.getEstado().intValue() == 1){
+                userActivo = true;
+            }else{
+                userActivo = false;
+            }
             //Guardo los permisos del usuario
             userPermisos = new ArrayList<Permisos>(user.getPermisosCollection()); // Crea un ArrayList en base a la colección de permisos
             new Auxiliares().irA("faces/index.xhtml");
         }else{
             Password = "";
             logeado = false;
-            new Auxiliares().setMsj(3, "Usuario o Password NO VALIDO");
+            new Auxiliares().setMsj(3, "Usuario o Password NO VALIDO ");
+            
         }
     }
     
@@ -168,6 +188,7 @@ public class UserActual {
         userPermisos=null;
         logeado = false;
         esAdmin = false;
+        userActivo = true;
         actualPass = "";
         nuevoPass = "";
         confirmPass = "";
@@ -236,9 +257,13 @@ public class UserActual {
     
     //FUNCION PARA CAMBIAR CONTRASEÑA
     public void cambiarPassword(){
+        try {
+         actualPass = new Auxiliares().getMD5(actualPass);
+       }catch (Exception ex){}
         try{
             if(user.getPassword().equals(actualPass)){
                 if(confirmPass.equals(nuevoPass)){
+                    nuevoPass = new Auxiliares().getMD5(nuevoPass);
                     user.setPassword(nuevoPass);
                     ejbFacade.edit(user);
                     JsfUtil.addSuccessMessage("Password Cambiado Correctamente");
@@ -280,4 +305,6 @@ public class UserActual {
             }
         
     }
+    
+    
 }

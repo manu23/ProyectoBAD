@@ -18,8 +18,8 @@
                          rowsPerPageTemplate="10,20,30" paginatorPosition="bottom"
                          >
 
-                <p:ajax event="rowSelect"   update=":frmButton:viewButton :frmButton:editButton"/>
-                <p:ajax event="rowUnselect" update=":frmButton:viewButton :frmButton:editButton"/>
+                <p:ajax event="rowSelect"   update=":frmButton:viewButton :frmButton:editButton :frmButton:resetButton" />
+                <p:ajax event="rowUnselect" update=":frmButton:viewButton :frmButton:editButton :frmButton:resetButton"/>
 
                 <p:column sortBy="#{item.idusuario}" filterBy="#{item.idusuario}">
                     <f:facet name="header">

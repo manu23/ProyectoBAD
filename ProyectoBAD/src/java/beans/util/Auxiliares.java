@@ -4,7 +4,10 @@
  */
 package beans.util;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -122,5 +125,22 @@ public class Auxiliares {
         return c;        
     }
     
+    
+    //FUNCION DE ENCRIPTACION DE PASSWORD A MD5
+    public String getMD5(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        final MessageDigest algorithm = MessageDigest.getInstance("MD5");
+        algorithm.reset();
+        algorithm.update(text.getBytes("utf-8"));
+        final StringBuilder hexStringBuilder = new StringBuilder();
+        final byte[] digest = algorithm.digest();
+        for (byte digestItem : digest) {
+            String hex = Integer.toHexString(0xFF & digestItem);
+            if (hex.length() == 1) {
+                hexStringBuilder.append('0');
+            }
+            hexStringBuilder.append(hex.toUpperCase());
+	}
+        return hexStringBuilder.toString();
+    }
     
 }

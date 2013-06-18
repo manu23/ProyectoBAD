@@ -39,5 +39,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         List<Usuario> resultado = consulta.getResultList();
         return resultado;        
     }
+    
+    
       
 }

@@ -27,6 +27,8 @@
                 <br/><br/>
                 <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuarioEditForm" oncomplete="UsuarioEditDialog.show()" disabled="#{empty usuarioController.selected}"/>
                 <br/><br/>
+                <p:commandButton id="resetButton"  value="Restaurar Password" update=":UsuarioResetForm" oncomplete="UsuarioResetDialog.show()" disabled="#{empty usuarioController.selected}"/>
+                
             </h:form>
     </ui:define>
     
