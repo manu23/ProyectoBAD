@@ -24,8 +24,8 @@
                         <p:outputLabel value="#{myBundle.CreatePensumLabel_anioaprobacion}" for="anioaprobacion" />
                         <p:inputText id="anioaprobacion" value="#{pensumController.selected.anioaprobacion}" title="#{myBundle.CreatePensumTitle_anioaprobacion}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pensumController.saveNew}" value="#{myBundle.Save}" update="display,:PensumListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PensumCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="PensumCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{pensumController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PensumListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PensumCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PensumCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

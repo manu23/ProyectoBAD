@@ -49,8 +49,8 @@
                             <f:converter binding="#{departamentoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{cargoController.saveNew}" value="#{myBundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CargoCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="CargoCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{cargoController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CargoCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="CargoCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

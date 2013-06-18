@@ -29,8 +29,8 @@
                             <f:converter binding="#{materiaConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{prerrequisitoController.saveNew}" value="#{myBundle.Save}" update="display,:PrerrequisitoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PrerrequisitoCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="PrerrequisitoCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{prerrequisitoController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PrerrequisitoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PrerrequisitoCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PrerrequisitoCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

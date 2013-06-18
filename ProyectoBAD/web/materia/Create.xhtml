@@ -80,8 +80,8 @@
                             <f:converter binding="#{prerrequisitoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{materiaController.saveNew}" value="#{myBundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MateriaCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="MateriaCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{materiaController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MateriaCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="MateriaCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>

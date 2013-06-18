@@ -24,6 +24,7 @@
                         <p:outputLabel value="#{myBundle.EditLocalLabel_capacidad}" for="capacidad" />
                         <p:inputText id="capacidad" value="#{localController.selected.capacidad}" title="#{myBundle.EditLocalTitle_capacidad}" />
                     </p:panelGrid>
+                    <br/>
                     <p:commandButton actionListener="#{localController.save}" value="#{myBundle.Save}" update="display,:LocalListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LocalEditDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="LocalEditDialog.hide()"/>
                 </h:panelGroup>

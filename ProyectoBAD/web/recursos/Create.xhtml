@@ -35,8 +35,8 @@
                             <f:converter binding="#{propuestaConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{recursosController.saveNew}" value="#{myBundle.Save}" update="display,:RecursosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RecursosCreateDialog);"/>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="RecursosCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{recursosController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:RecursosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RecursosCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-disk" onclick="RecursosCreateDialog.hide()"/>
                 </h:panelGroup>
 
             </h:form>
