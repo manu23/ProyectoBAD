@@ -31,6 +31,21 @@
         </c:choose>
 
     </ui:define>
+    
+    <ui:define name="right" >
+        
+            <h:form id="frmButton">
+                <br/>
+                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{cargoController.prepareCreate}" update=":CargoCreateForm" oncomplete="CargoCreateDialog.show()" rendered="#{userActual.puedeCrear('CARGO')}" style="width: 85px;"/>
+                <br/><br/>
+                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":CargoViewForm" oncomplete="CargoViewDialog.show()" disabled="#{empty cargoController.selected}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":CargoEditForm" oncomplete="CargoEditDialog.show()" disabled="#{empty cargoController.selected}" rendered="#{userActual.puedeActualizar('CARGO')}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{cargoController.delete}" update=":growl,:CargoListForm:datalist" disabled="#{empty cargoController.selected}" rendered="#{userActual.puedeEliminar('CARGO')}" style="width: 85px;" />
+            </h:form>
+    </ui:define>
+    
     <ui:define name="footer">
             <h:form>
                 <p:stack icon="../resources/images/stack.png">  

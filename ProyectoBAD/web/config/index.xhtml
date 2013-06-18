@@ -8,26 +8,12 @@
                 template="/template.xhtml">
 
     <ui:define name="title">
-        <h:outputText value="#{myBundle.UsuarioTitle}"/>
+        <h:outputText value="Configuracion de Cuenta"/>
     </ui:define>
 
     <ui:define name="body">
-
-        <ui:include src="List.xhtml"/>
-        <ui:include src="View.xhtml"/>
+        <ui:include src="cuenta.xhtml"/>
         <ui:include src="Edit.xhtml"/>
-
-    </ui:define>
-    
-    <ui:define name="right" >
-        
-            <h:form id="frmButton">
-                <br/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":UsuarioViewForm" oncomplete="UsuarioViewDialog.show()" disabled="#{empty usuarioController.selected}"/>
-                <br/><br/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuarioEditForm" oncomplete="UsuarioEditDialog.show()" disabled="#{empty usuarioController.selected}"/>
-                <br/><br/>
-            </h:form>
     </ui:define>
     
     
@@ -35,6 +21,7 @@
             <h:form>
                 <p:stack icon="../../resources/images/stack.png">  
                     <p:menuitem value="Home" icon="../../resources/images/home.png" url="/faces/index.xhtml"/>
+                    <p:menuitem value="Contraseña" icon="../resources/images/key.png" url="/faces/config/cuenta.xhtml"/>
                     <p:menuitem value="Exit" icon="../../resources/images/down.png" action="#{userActual.logout}"/>
                 </p:stack> 
             </h:form>

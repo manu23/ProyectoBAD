@@ -18,8 +18,8 @@
                          rowsPerPageTemplate="10,20,30" paginatorPosition="bottom"
                          >
 
-                <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                <p:ajax event="rowUnselect" update="viewButton editButton"/>
+                <p:ajax event="rowSelect"   update=":frmButton:viewButton :frmButton:editButton"/>
+                <p:ajax event="rowUnselect" update=":frmButton:viewButton :frmButton:editButton"/>
 
                 <p:column sortBy="#{item.idpermiso}" filterBy="#{item.idpermiso}">
                     <f:facet name="header">
@@ -63,10 +63,6 @@
                     </f:facet>
                     <h:outputText value="#{item.idusuario.idusuario}"/>
                 </p:column>
-                <f:facet name="footer">
-                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PermisosViewForm" oncomplete="PermisosViewDialog.show()" disabled="#{empty permisosController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PermisosEditForm" oncomplete="PermisosEditDialog.show()" disabled="#{empty permisosController.selected}"/>
-                </f:facet>
 
             </p:dataTable>
 

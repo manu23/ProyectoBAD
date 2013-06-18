@@ -32,6 +32,21 @@
 
     </ui:define>
     
+    <ui:define name="right" >
+        
+            <h:form id="frmButton">
+                <br/>
+                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{horarioController.prepareCreate}" update=":HorarioCreateForm" oncomplete="HorarioCreateDialog.show()" rendered="#{userActual.puedeCrear('HORARIO')}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":HorarioViewForm" oncomplete="HorarioViewDialog.show()" disabled="#{empty horarioController.selected}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":HorarioEditForm" oncomplete="HorarioEditDialog.show()" disabled="#{empty horarioController.selected}" rendered="#{userActual.puedeActualizar('HORARIO')}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{horarioController.delete}" update=":growl,:HorarioListForm:datalist" disabled="#{empty horarioController.selected}" rendered="#{userActual.puedeEliminar('HORARIO')}" style="width: 85px;" />
+         </h:form>
+    </ui:define>
+    
+    
     <ui:define name="footer">
             <h:form>
                 <p:stack icon="../resources/images/stack.png">  

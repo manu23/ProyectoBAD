@@ -32,6 +32,20 @@
 
     </ui:define>
     
+     <ui:define name="right" >
+        
+            <h:form id="frmButton">
+                <br/>
+                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{localController.prepareCreate}" update=":LocalCreateForm" oncomplete="LocalCreateDialog.show()" rendered="#{userActual.puedeCrear('LOCAL')}" style="width: 85px;"/>
+                <br/><br/>
+                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":LocalViewForm" oncomplete="LocalViewDialog.show()" disabled="#{empty localController.selected}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":LocalEditForm" oncomplete="LocalEditDialog.show()" disabled="#{empty localController.selected}" rendered="#{userActual.puedeActualizar('LOCAL')}" style="width: 85px;" />
+                <br/><br/>
+                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{localController.delete}" update=":growl,:LocalListForm:datalist" disabled="#{empty localController.selected}" rendered="#{userActual.puedeEliminar('LOCAL')}" style="width: 85px;" />
+          </h:form>
+    </ui:define>
+    
     <ui:define name="footer">
             <h:form>
                 <p:stack icon="../resources/images/stack.png">  

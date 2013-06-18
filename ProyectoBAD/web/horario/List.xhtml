@@ -18,8 +18,8 @@
                          rowsPerPageTemplate="10,20,30" paginatorPosition="bottom"
                          >
 
-                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowSelect"   update=":frmButton:createButton :frmButton:viewButton :frmButton:editButton :frmButton:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":frmButton:createButton :frmButton:viewButton :frmButton:editButton :frmButton:deleteButton"/>
 
                 <p:column sortBy="#{item.idhorario}" filterBy="#{item.idhorario}">
                     <f:facet name="header">
@@ -57,12 +57,6 @@
                     </f:facet>
                     <h:outputText value="#{item.idlocal.idlocal}"/>
                 </p:column>
-                <f:facet name="footer">
-                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{horarioController.prepareCreate}" update=":HorarioCreateForm" oncomplete="HorarioCreateDialog.show()" rendered="#{userActual.puedeCrear('HORARIO')}" />
-                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":HorarioViewForm" oncomplete="HorarioViewDialog.show()" disabled="#{empty horarioController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":HorarioEditForm" oncomplete="HorarioEditDialog.show()" disabled="#{empty horarioController.selected}" rendered="#{userActual.puedeActualizar('HORARIO')}" />
-                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{horarioController.delete}" update=":growl,datalist" disabled="#{empty horarioController.selected}" rendered="#{userActual.puedeEliminar('HORARIO')}" />
-                </f:facet>
 
             </p:dataTable>
 

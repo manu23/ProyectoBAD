@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:panel header="#{myBundle.Welcome} #{userActual.user.idusuario} ( #{userActual.user.tipousuario} )">
+            <h:form id="cuenta">
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="#{myBundle.CreateUsuarioLabel_idusuario}" for="idusuario" />
+                    <p:inputText id="idusuario" value="#{userActual.user.idusuario}" readonly="true" />
+
+                    <p:outputLabel value="#{myBundle.CreateUsuarioLabel_tipousuario}" for="tipousuario" />
+                    <p:inputText id="tipousuario" value="#{userActual.user.tipousuario}"  readonly="true"/>
+
+                    <p:outputLabel value="#{myBundle.CreateUsuarioLabel_estado}" for="estado" />
+                    <p:inputText id="estado" value="#{auxiliares.converterToString('Usuarios',userActual.user.estado)}" readonly="true" />
+
+                    <p:outputLabel value="#{myBundle.CreateUsuarioLabel_iddocente}" for="iddocente" />
+                    <p:inputText id="iddocente" value="#{userActual.user.iddocente.nombredocente} #{userActual.user.iddocente.apellidodocente}" readonly="true" />
+                </p:panelGrid>
+                <br/>
+                <p:commandButton value="Cambiar Contrase&ntilde;a" icon="ui-icon-pencil" oncomplete="CambiarDialog.show();" update=":CambiarForm" />
+            </h:form>
+    </p:panel>
+        
+       
+
+    </ui:composition>
+
+</html>
+

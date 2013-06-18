@@ -5,13 +5,18 @@
 package beans;
 
 import beans.util.Auxiliares;
+import beans.util.JsfUtil;
 import controladores.UsuarioFacade;
 import entidades.Permisos;
 import entidades.Usuario;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -34,6 +39,11 @@ public class UserActual {
     String Password;
     boolean logeado = false;
     boolean esAdmin=false;
+    
+    //variables de cambio de password
+    String actualPass;
+    String nuevoPass;
+    String confirmPass;
     
     //Constructor del BEAN
     public UserActual() {
@@ -95,6 +105,30 @@ public class UserActual {
     public void setEsAdmin(boolean esAdmin) {
         this.esAdmin = esAdmin;
     }
+
+    public String getActualPass() {
+        return actualPass;
+    }
+
+    public void setActualPass(String actualPass) {
+        this.actualPass = actualPass;
+    }
+
+    public String getNuevoPass() {
+        return nuevoPass;
+    }
+
+    public void setNuevoPass(String nuevoPass) {
+        this.nuevoPass = nuevoPass;
+    }
+
+    public String getConfirmPass() {
+        return confirmPass;
+    }
+
+    public void setConfirmPass(String confirmPass) {
+        this.confirmPass = confirmPass;
+    }
     
     
     
@@ -107,6 +141,9 @@ public class UserActual {
         if(!userX.isEmpty()){
             user = userX.get(0);
             logeado = true;
+            actualPass = "";
+            nuevoPass = "";
+            confirmPass = "";
             //Verifica si es un usuario del tipo Administrador
             if(user.getTipousuario().equals("Admin")){
                 esAdmin = true;
@@ -131,6 +168,9 @@ public class UserActual {
         userPermisos=null;
         logeado = false;
         esAdmin = false;
+        actualPass = "";
+        nuevoPass = "";
+        confirmPass = "";
         new Auxiliares().irA("faces/login.xhtml");
     }
     
@@ -192,5 +232,52 @@ public class UserActual {
             }
         }
         return permiso;
+    }
+    
+    //FUNCION PARA CAMBIAR CONTRASEÑA
+    public void cambiarPassword(){
+        try{
+            if(user.getPassword().equals(actualPass)){
+                if(confirmPass.equals(nuevoPass)){
+                    user.setPassword(nuevoPass);
+                    ejbFacade.edit(user);
+                    JsfUtil.addSuccessMessage("Password Cambiado Correctamente");
+                    actualPass = "";
+                    nuevoPass = "";
+                    confirmPass = "";
+            }else{
+                actualPass = "";
+                nuevoPass = "";
+                confirmPass = "";
+                new Auxiliares().setMsj(3,"Confirmacion de Password Incorrecta");
+            }
+            }else{
+                actualPass = "";
+                nuevoPass = "";
+                confirmPass = "";
+                new Auxiliares().setMsj(3,"Password Actual Incorrecto");
+            }
+        }catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = JsfUtil.getRootCause(ex.getCause());
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/MyBundle").getString("PersistenceErrorOccured"));
+                }
+                actualPass = "";
+                nuevoPass = "";
+                confirmPass = "";
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/MyBundle").getString("PersistenceErrorOccured"));
+                actualPass = "";
+                nuevoPass = "";
+                confirmPass = "";
+            }
+        
     }
 }

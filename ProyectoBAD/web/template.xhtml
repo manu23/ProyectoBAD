@@ -28,12 +28,17 @@
                                    <ui:insert name="body"/>
                             </p:layoutUnit>
 
-                            <p:layoutUnit  position="west" size="50" />
-                            <p:layoutUnit  position="east"  size="50" />
+                            <p:layoutUnit  position="west" size="50">
+                                    
+                            </p:layoutUnit>
+                            <p:layoutUnit  position="east"  size="100">
+                                <ui:insert name="right"/>
+                            </p:layoutUnit>
                             
 
                             <p:layoutUnit position="south" size="60">
-                                <ui:insert name="footer"/>
+                                <p style="text-align: center"> UES-FIA-EISI &copy; Copyright 2013 &nbsp;&nbsp;&nbsp;</p>
+                                <ui:insert name="footer" />
                             </p:layoutUnit>
 
 

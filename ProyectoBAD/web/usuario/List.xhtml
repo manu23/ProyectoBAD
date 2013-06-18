@@ -18,8 +18,8 @@
                          rowsPerPageTemplate="10,20,30" paginatorPosition="bottom"
                          >
 
-                <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                <p:ajax event="rowUnselect" update="viewButton editButton"/>
+                <p:ajax event="rowSelect"   update=":frmButton:viewButton :frmButton:editButton"/>
+                <p:ajax event="rowUnselect" update=":frmButton:viewButton :frmButton:editButton"/>
 
                 <p:column sortBy="#{item.idusuario}" filterBy="#{item.idusuario}">
                     <f:facet name="header">
@@ -51,11 +51,6 @@
                     </f:facet>
                     <h:outputText value="#{item.iddocente.nombredocente} #{item.iddocente.apellidodocente}"/>
                 </p:column>
-                <f:facet name="footer">
-                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":UsuarioViewForm" oncomplete="UsuarioViewDialog.show()" disabled="#{empty usuarioController.selected}"/>
-                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuarioEditForm" oncomplete="UsuarioEditDialog.show()" disabled="#{empty usuarioController.selected}"/>
-                </f:facet>
-
             </p:dataTable>
 
         </p:panel>
