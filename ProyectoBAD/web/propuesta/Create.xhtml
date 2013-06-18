@@ -27,15 +27,7 @@
                         <p:outputLabel value="#{myBundle.CreatePropuestaLabel_justificacion}" for="justificacion" />
                         <p:inputTextarea rows="4" cols="30" id="justificacion" value="#{propuestaController.selected.justificacion}" title="#{myBundle.CreatePropuestaTitle_justificacion}" required="true" requiredMessage="#{myBundle.CreatePropuestaRequiredMessage_justificacion}"/>
 
-                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_aprobadojefe}" for="aprobadojefe" />
-                        <p:inputText id="aprobadojefe" value="#{propuestaController.selected.aprobadojefe}" title="#{myBundle.CreatePropuestaTitle_aprobadojefe}" />
-
-                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_aprobadodirector}" for="aprobadodirector" />
-                        <p:inputText id="aprobadodirector" value="#{propuestaController.selected.aprobadodirector}" title="#{myBundle.CreatePropuestaTitle_aprobadodirector}" />
-
-                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_aprobadojunta}" for="aprobadojunta" />
-                        <p:inputText id="aprobadojunta" value="#{propuestaController.selected.aprobadojunta}" title="#{myBundle.CreatePropuestaTitle_aprobadojunta}" />
-
+                        
                         <p:outputLabel value="#{myBundle.CreatePropuestaLabel_iddocente}" for="iddocente" />
                         <p:selectOneMenu id="iddocente" value="#{propuestaController.selected.iddocente}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -58,7 +50,7 @@
                             <f:converter binding="#{cargoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{propuestaController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
+                    <p:commandButton actionListener="#{propuestaController.guardar}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PropuestaCreateDialog.hide()"/>
                 </h:panelGroup>
 

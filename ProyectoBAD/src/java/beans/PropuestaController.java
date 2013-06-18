@@ -3,6 +3,7 @@ package beans;
 import entidades.Propuesta;
 import controladores.PropuestaFacade;
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -28,8 +29,9 @@ public class PropuestaController extends AbstractController<Propuesta> implement
     }
     
     public void guardar(ActionEvent e){
-        super.getSelected().setIdpropuesta("idAuto" + correlativo);
-        correlativo++;
+        super.getSelected().setAprobadojefe(BigInteger.ZERO);
+        super.getSelected().setAprobadodirector(BigInteger.ZERO);
+        super.getSelected().setAprobadojunta(BigInteger.ZERO);
         super.saveNew(e);
     }
 }
