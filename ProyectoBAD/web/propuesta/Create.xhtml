@@ -15,8 +15,8 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{propuestaController.selected != null}">
 
-                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_idpropuesta}" for="idpropuesta" />
-                        <p:inputText id="idpropuesta" value="#{propuestaController.selected.idpropuesta}" title="#{myBundle.CreatePropuestaTitle_idpropuesta}" required="true" requiredMessage="#{myBundle.CreatePropuestaRequiredMessage_idpropuesta}"/>
+                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_idpropuesta}" for="idpropuesta" rendered="true" />
+                        <p:inputText id="idpropuesta" value="#{propuestaController.selected.idpropuesta}" title="#{myBundle.CreatePropuestaTitle_idpropuesta}" required="true" requiredMessage="#{myBundle.CreatePropuestaRequiredMessage_idpropuesta}" rendered="true"/>
 
                         <p:outputLabel value="#{myBundle.CreatePropuestaLabel_fechapropuesta}" for="fechapropuesta" />
                         <p:calendar id="fechapropuesta" pattern="MM/dd/yyyy" value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.EditPropuestaTitle_fechapropuesta}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_fechapropuesta}" showOn="button"/>

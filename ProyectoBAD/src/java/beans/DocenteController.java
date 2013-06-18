@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 @ManagedBean(name = "docenteController")
 @ViewScoped
@@ -22,5 +23,10 @@ public class DocenteController extends AbstractController<Docente> implements Se
     @PostConstruct
     public void init() {
         super.setFacade(ejbFacade);
+    }
+    
+    public void guardar(ActionEvent e){
+        super.getSelected().setIddocente("idAuto");
+        super.saveNew(e);
     }
 }
