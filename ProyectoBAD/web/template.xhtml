@@ -19,8 +19,12 @@
                         <p:growl id="growl" life="3000"/>
 
                         <p:layout fullPage="true">
-                            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
+                            <p:layoutUnit position="north" size="125" header="#{myBundle.AppName}">
+                                
+                                <p:graphicImage value="../resources/images/logoBlack.png" style="height:50px; float: left"/>
+                                <p>&nbsp;&nbsp;UNIVERSIDAD DE EL SALVADOR</p>
                                 <!-- Menu here. Also a layout and a way to log a user out -->
+                                <br/>
                                 <ui:include src="/appmenu.xhtml"/>
                             </p:layoutUnit>
 
@@ -29,14 +33,14 @@
                             </p:layoutUnit>
 
                             <p:layoutUnit  position="west" size="100">
-                                <p:graphicImage value="../resources/images/minerva.jpg" style="height:  100%;"/>
+                                <p:graphicImage value="../resources/images/minerva.jpg" style="height:  95%;"/>
                             </p:layoutUnit>
                             <p:layoutUnit  position="east"  size="100">
                                 <ui:insert name="right"/>
                             </p:layoutUnit>
                             
 
-                            <p:layoutUnit position="south" size="60">
+                            <p:layoutUnit position="south" size="50">
                                 <p style="text-align: center"> UES-FIA-EISI &copy; Copyright 2013 &nbsp;&nbsp;&nbsp;</p>
                                 <ui:insert name="footer" />
                             </p:layoutUnit>
