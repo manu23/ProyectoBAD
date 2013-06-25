@@ -25,7 +25,7 @@
                         <p:inputText id="capacidad" value="#{localController.selected.capacidad}" title="#{myBundle.CreateLocalTitle_capacidad}" />
                     </p:panelGrid>
                     <br/>
-                    <p:commandButton actionListener="#{localController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:LocalListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LocalCreateDialog);"/>
+                    <p:commandButton actionListener="#{localController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:LocalListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LocalCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="LocalCreateDialog.hide()"/>
                 </h:panelGroup>
 
