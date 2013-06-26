@@ -5,9 +5,11 @@
 package controladores;
 
 import entidades.Departamento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,4 +29,23 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
         super(Departamento.class);
     }
     
+    //FUNCION QUE VERIFICA SI YA EXISTE EL IDDEPARTAMENTO
+    public List<Departamento> existeDeptoID(String id){
+        
+        Query consulta = em.createNamedQuery("Departamento.findByIddepartamento"); 
+        //Se le pasan los parametros
+        consulta.setParameter("iddepartamento", id);
+        List<Departamento> resultado = consulta.getResultList();
+        return resultado;        
+    }
+    
+    //FUNCION QUE VERIFICA SI YA EXISTE EL NOMBRE DEL DEPARTAMENTO
+    public List<Departamento> existeDeptoNOM(String nombre){
+        
+        Query consulta = em.createNamedQuery("Departamento.findByNombredepartamento"); 
+        //Se le pasan los parametros
+        consulta.setParameter("nombredepartamento", nombre);
+        List<Departamento> resultado = consulta.getResultList();
+        return resultado;        
+    }
 }

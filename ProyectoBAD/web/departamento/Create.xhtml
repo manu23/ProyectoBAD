@@ -24,7 +24,7 @@
                         <p:outputLabel value="#{myBundle.CreateDepartamentoLabel_descripciondepartamento}" for="descripciondepartamento" />
                         <p:inputText id="descripciondepartamento" value="#{departamentoController.selected.descripciondepartamento}" title="#{myBundle.CreateDepartamentoTitle_descripciondepartamento}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{departamentoController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:DepartamentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DepartamentoCreateDialog);"/>
+                    <p:commandButton actionListener="#{departamentoController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:DepartamentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DepartamentoCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="DepartamentoCreateDialog.hide()"/>
                 </h:panelGroup>
 

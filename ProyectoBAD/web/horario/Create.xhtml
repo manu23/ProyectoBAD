@@ -49,7 +49,7 @@
                             <f:converter binding="#{localConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{horarioController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:HorarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,HorarioCreateDialog);"/>
+                    <p:commandButton actionListener="#{horarioController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:HorarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,HorarioCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="HorarioCreateDialog.hide()"/>
                 </h:panelGroup>
 

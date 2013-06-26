@@ -57,11 +57,11 @@
                     </f:facet>
                     <h:outputText value="#{item.email}"/>
                 </p:column>
-                <p:column sortBy="#{item.iddepartamento.descripciondepartamento}" filterBy="#{item.iddepartamento.descripciondepartamento}">
+                <p:column sortBy="#{item.iddepartamento.nombredepartamento}" filterBy="#{item.iddepartamento.nombredepartamento}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListDocenteTitle_iddepartamento}"/>
                     </f:facet>
-                    <h:outputText value="#{item.iddepartamento.descripciondepartamento}"/>
+                    <h:outputText value="#{item.iddepartamento.nombredepartamento}"/>
                 </p:column>
 
             </p:dataTable>

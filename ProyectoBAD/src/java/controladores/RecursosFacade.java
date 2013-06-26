@@ -5,9 +5,11 @@
 package controladores;
 
 import entidades.Recursos;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +27,16 @@ public class RecursosFacade extends AbstractFacade<Recursos> {
 
     public RecursosFacade() {
         super(Recursos.class);
+    }
+    
+    //FUNCION QUE VERIFICA SI YA EXISTE EL IDRECURSO
+    public List<Recursos> existeRecursoID(String id){
+        
+        Query consulta = em.createNamedQuery("Recursos.findByIdrecursos"); 
+        //Se le pasan los parametros
+        consulta.setParameter("idrecursos", id);
+        List<Recursos> resultado = consulta.getResultList();
+        return resultado;        
     }
     
 }

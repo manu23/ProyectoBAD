@@ -31,7 +31,7 @@
                         <h:outputText id="docente" value="#{cargoController.selected.docente.iddocente}"/>
 
                         <h:outputLabel value="#{myBundle.EditCargoLabel_departamento}" for="departamento" />
-                        <h:outputText id="departamento" value="#{cargoController.selected.departamento.descripciondepartamento}"/>
+                        <h:outputText id="departamento" value="#{cargoController.selected.departamento.nombredepartamento}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{cargoController.save}" value="#{myBundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CargoEditDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="CargoEditDialog.hide()"/>

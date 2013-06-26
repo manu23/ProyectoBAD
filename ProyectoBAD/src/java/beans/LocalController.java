@@ -27,12 +27,13 @@ public class LocalController extends AbstractController<Local> implements Serial
         super.setFacade(ejbFacade);
     }
     
+    //FUNCION MEJORADA CREAR LOCAL
     public void CrearNew(ActionEvent e) {
         List<Local> R = ejbFacade.existeLocal(super.getSelected().getIdlocal());
         if(R.isEmpty()){
             super.saveNew(e);
         }else{
-            new Auxiliares().setMsj(3,"LOCAL ID YA Existe");
+            new Auxiliares().setMsj(3,"LOCAL YA EXISTE");
         }
     }
 }
