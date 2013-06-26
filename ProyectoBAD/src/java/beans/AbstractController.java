@@ -1,5 +1,6 @@
 package beans;
 
+import beans.util.Auxiliares;
 import controladores.AbstractFacade;
 import beans.util.JsfUtil;
 import java.util.List;
@@ -102,8 +103,8 @@ public abstract class AbstractController<T> {
             try {
                 if (persistAction != PersistAction.DELETE) {
                     this.ejbFacade.edit(selected);
-                } else {
-                    this.ejbFacade.remove(selected);
+                }else{
+                    this.ejbFacade.remove(selected);   
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -130,19 +131,19 @@ public abstract class AbstractController<T> {
      *
      * @return
      */
-    public T prepareCreate(ActionEvent event) {
+    public void prepareCreate(ActionEvent event) {
         T newItem;
         try {
             newItem = itemClass.newInstance();
             this.selected = newItem;
             initializeEmbeddableKey();
-            return newItem;
+            //return newItem;
         } catch (InstantiationException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        //return null;
     }
 
     public boolean isValidationFailed() {

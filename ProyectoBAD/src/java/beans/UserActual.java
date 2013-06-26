@@ -45,6 +45,8 @@ public class UserActual {
     String nuevoPass;
     String confirmPass;
     
+    int contador=0;
+    
     //Constructor del BEAN
     public UserActual() {
     }
@@ -139,9 +141,16 @@ public class UserActual {
     public void setConfirmPass(String confirmPass) {
         this.confirmPass = confirmPass;
     }
-    
-    
-    
+
+    public int getContador() {
+        contador=contador+1;
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+   
     
     //FUNCIONES PROPIAS DE LA CLASE
     

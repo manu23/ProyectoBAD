@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{docenteController.selected != null}">
                         
-                        <p:outputLabel value="#{myBundle.CreateDocenteLabel_iddocente}" for="iddocente" rendered="true" />
-                        <p:inputText id="iddocente" value="#{docenteController.selected.iddocente}" title="#{myBundle.CreateDocenteTitle_iddocente}" required="true" requiredMessage="#{myBundle.CreateDocenteRequiredMessage_iddocente}" rendered="true"  />
-
                         <p:outputLabel value="#{myBundle.CreateDocenteLabel_nombredocente}" for="nombredocente" />
                         <p:inputText id="nombredocente" value="#{docenteController.selected.nombredocente}" title="#{myBundle.CreateDocenteTitle_nombredocente}" required="true" requiredMessage="#{myBundle.CreateDocenteRequiredMessage_nombredocente}"/>
                         
@@ -44,7 +41,7 @@
                             <f:converter binding="#{departamentoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{docenteController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:DocenteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DocenteCreateDialog);"/>
+                    <p:commandButton actionListener="#{docenteController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:DocenteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DocenteCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="DocenteCreateDialog.hide()"/>
                 </h:panelGroup>
 

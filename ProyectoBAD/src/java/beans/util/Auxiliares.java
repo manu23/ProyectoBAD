@@ -4,6 +4,7 @@
  */
 package beans.util;
 
+import beans.UserActual;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -12,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,6 +22,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "auxiliares")
 @SessionScoped
 public class Auxiliares {
+    
+       
     
     /**
      * *****************Inicio de FUNCION******************* 
@@ -141,6 +145,55 @@ public class Auxiliares {
             hexStringBuilder.append(hex.toUpperCase());
 	}
         return hexStringBuilder.toString();
+    }
+    
+    
+    /**
+     * *****************Inicio de modulo******************* 
+     *      Nombre del módulo:
+     *          - getSesion
+     *      Objetivo: 
+     *          - Obtener la instancia de la sesion actual de la aplicacion
+     *      Parámetros de entrada:
+     *          - no hay
+     *      Parámetros de retorno: 
+     *          - (HttpSession) context.getExternalContext().getSession(false);
+     *             retorna la sesion actual del sistema
+     *      Módulos de la clase utilizados: 
+     *          - no hay
+     */
+    public HttpSession getSesion(){
+        FacesContext context = javax.faces.context.FacesContext.getCurrentInstance();
+        /*Objetivo:
+         *      almacena el contexto de la intancia actual de navegación
+         */
+        return (HttpSession) context.getExternalContext().getSession(false);
+    }
+    /**
+     * *****************Inicio de modulo******************* 
+     *      Nombre del módulo:
+     *          - getUserActual
+     *      Objetivo: 
+     *          - Obtener la variable ddkClientes almacenada en el Bean 
+     *            ddkClientesController el cual es un bean del tipo sessionScope
+     *      Parámetros de entrada:
+     *          - no hay
+     *      Parámetros de retorno: 
+     *          - ddkClientesController.getDdkClientes(), retorna la Entity 
+     *            DdkClientes con los valores establecidos el Bean 
+     *            ddkClientesController
+     *      Módulos de la clase utilizados: 
+     *          - no hay
+     */
+        
+    public UserActual getUserActual() {
+        
+        UserActual usuario = (UserActual) getSesion().getAttribute("UserActual");
+        /*Objetivo:
+         *      obtiene el controlador ddkClientesController almacenado en la 
+         *      sesión actual de la aplicación
+         */
+        return usuario;
     }
     
 }

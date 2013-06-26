@@ -1,8 +1,10 @@
 package beans;
 
+import beans.util.Auxiliares;
 import entidades.Docente;
 import controladores.DocenteFacade;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -13,6 +15,7 @@ import javax.faces.event.ActionEvent;
 @ViewScoped
 public class DocenteController extends AbstractController<Docente> implements Serializable {
 
+    private int contadorID=0;
     @EJB
     private DocenteFacade ejbFacade;
 
@@ -25,8 +28,24 @@ public class DocenteController extends AbstractController<Docente> implements Se
         super.setFacade(ejbFacade);
     }
     
-    public void guardar(ActionEvent e){
-        super.getSelected().setIddocente("idAuto");
+    public void CrearNew(ActionEvent e) {
+        String id = "DOC";
+        boolean salir = false;
+        int cont = 0;
+        List<Docente> R = null;
+        while(!salir){
+            super.getSelected().setIddocente(id + cont);
+            R = ejbFacade.existeDocente(super.getSelected().getIddocente());
+            if(R.isEmpty()){
+                salir = true;
+            }else{
+                salir = false;
+                R.clear();
+                cont++;
+            }
+        }//FIN WHILE
         super.saveNew(e);
+        new Auxiliares().setMsj(3,super.getSelected().getIddocente());
     }
+    
 }
