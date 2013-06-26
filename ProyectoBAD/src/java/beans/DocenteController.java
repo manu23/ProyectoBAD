@@ -28,6 +28,7 @@ public class DocenteController extends AbstractController<Docente> implements Se
         super.setFacade(ejbFacade);
     }
     
+    //Funcion mejorada para crear un docente
     public void CrearNew(ActionEvent e) {
         String id = "DOC";
         boolean salir = false;
@@ -45,7 +46,6 @@ public class DocenteController extends AbstractController<Docente> implements Se
             }
         }//FIN WHILE
         super.saveNew(e);
-        new Auxiliares().setMsj(3,super.getSelected().getIddocente());
     }
     
 }

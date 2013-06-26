@@ -5,9 +5,11 @@
 package controladores;
 
 import entidades.Propuesta;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,4 +29,12 @@ public class PropuestaFacade extends AbstractFacade<Propuesta> {
         super(Propuesta.class);
     }
     
+    //FUNCION QUE VERIFICA SI YA EXISTE EL ID PROPUESTA
+    public List<Propuesta> existePropuesta(String id){
+        Query consulta = em.createNamedQuery("Propuesta.findByIdpropuesta"); 
+        //Se le pasan los parametros
+        consulta.setParameter("idpropuesta", id);
+        List<Propuesta> resultado = consulta.getResultList();
+        return resultado;
+    }
 }

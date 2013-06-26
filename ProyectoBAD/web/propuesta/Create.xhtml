@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{propuestaController.selected != null}">
 
-                        <p:outputLabel value="#{myBundle.CreatePropuestaLabel_idpropuesta}" for="idpropuesta" rendered="true" />
-                        <p:inputText id="idpropuesta" value="#{propuestaController.selected.idpropuesta}" title="#{myBundle.CreatePropuestaTitle_idpropuesta}" required="true" requiredMessage="#{myBundle.CreatePropuestaRequiredMessage_idpropuesta}" rendered="true"/>
-
                         <p:outputLabel value="#{myBundle.CreatePropuestaLabel_fechapropuesta}" for="fechapropuesta" />
                         <p:calendar id="fechapropuesta" pattern="MM/dd/yyyy" value="#{propuestaController.selected.fechapropuesta}" title="#{myBundle.EditPropuestaTitle_fechapropuesta}" required="true" requiredMessage="#{myBundle.EditPropuestaRequiredMessage_fechapropuesta}" showOn="button"/>
 
@@ -50,7 +47,7 @@
                             <f:converter binding="#{cargoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{propuestaController.guardar}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
+                    <p:commandButton actionListener="#{propuestaController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PropuestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PropuestaCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PropuestaCreateDialog.hide()"/>
                 </h:panelGroup>
 
