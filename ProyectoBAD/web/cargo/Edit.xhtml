@@ -19,8 +19,12 @@
                         <h:outputText id="cargoPK_idcargo" value="#{cargoController.selected.cargoPK.idcargo}" />
 
                         <p:outputLabel value="#{myBundle.EditCargoLabel_nombrecargo}" for="nombrecargo" />
-                        <p:inputText id="nombrecargo" value="#{cargoController.selected.nombrecargo}" title="#{myBundle.EditCargoTitle_nombrecargo}" />
-
+                        <p:selectOneMenu id="nombrecargo" value="#{cargoController.selected.nombrecargo}">
+                            <f:selectItem itemLabel="Jefe" itemValue="Jefe" /> 
+                            <f:selectItem itemLabel="Secetario" itemValue="Secretario" />
+                            <f:selectItem itemLabel="Director" itemValue="Director" />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{myBundle.EditCargoLabel_fechainiciocargo}" for="fechainiciocargo" />
                         <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
 

@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Prerrequisito.findAll", query = "SELECT p FROM Prerrequisito p"),
     @NamedQuery(name = "Prerrequisito.findByIdpropuesta", query = "SELECT p FROM Prerrequisito p WHERE p.prerrequisitoPK.idpropuesta = :idpropuesta"),
     @NamedQuery(name = "Prerrequisito.findByCodigomateria", query = "SELECT p FROM Prerrequisito p WHERE p.prerrequisitoPK.codigomateria = :codigomateria"),
-    @NamedQuery(name = "Prerrequisito.findByNombreprerrequisito", query = "SELECT p FROM Prerrequisito p WHERE p.nombreprerrequisito = :nombreprerrequisito")})
+    @NamedQuery(name = "Prerrequisito.findByNombreprerrequisito", query = "SELECT p FROM Prerrequisito p WHERE p.nombreprerrequisito = :nombreprerrequisito"),
+    @NamedQuery(name = "Prerrequisito.existePrerrequisito", query = "SELECT p FROM Prerrequisito p WHERE p.prerrequisitoPK.codigomateria = :codigomateria AND p.nombreprerrequisito = :nombreprerrequisito")})
 public class Prerrequisito implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

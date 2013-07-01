@@ -14,10 +14,7 @@
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{prerrequisitoController.selected != null}">
-
-                        <p:outputLabel value="#{myBundle.CreatePrerrequisitoLabel_nombreprerrequisito}" for="nombreprerrequisito" />
-                        <p:inputText id="nombreprerrequisito" value="#{prerrequisitoController.selected.nombreprerrequisito}" title="#{myBundle.CreatePrerrequisitoTitle_nombreprerrequisito}" />
-
+                        
                         <p:outputLabel value="#{myBundle.CreatePrerrequisitoLabel_materia}" for="materia" />
                         <p:selectOneMenu id="materia" value="#{prerrequisitoController.selected.materia}" required="true" requiredMessage="#{myBundle.EditPrerrequisitoRequiredMessage_materia}">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -28,8 +25,20 @@
                                            />
                             <f:converter binding="#{materiaConverter}"/>
                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{myBundle.CreatePrerrequisitoLabel_nombreprerrequisito}" for="nombreprerrequisito" />
+                        <p:selectOneMenu id="nombreprerrequisito" value="#{prerrequisitoController.selected.nombreprerrequisito}" required="true" requiredMessage="Prerrequisito Necesario">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiaController.items}"
+                                           var="materiaItem"
+                                           itemValue="#{materiaItem.materiaPK.codigomateria}"
+                                           itemLabel="#{materiaItem.materiaPK.codigomateria}"
+                                           />
+                        </p:selectOneMenu>
+
+                        
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{prerrequisitoController.saveNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PrerrequisitoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PrerrequisitoCreateDialog);"/>
+                    <p:commandButton actionListener="#{prerrequisitoController.CrearNew}" icon="ui-icon-disk" value="#{myBundle.Save}" update="display,:PrerrequisitoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PrerrequisitoCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" icon="ui-icon-close" onclick="PrerrequisitoCreateDialog.hide()"/>
                 </h:panelGroup>
 

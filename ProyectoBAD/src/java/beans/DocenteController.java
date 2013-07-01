@@ -31,6 +31,7 @@ public class DocenteController extends AbstractController<Docente> implements Se
     //Funcion mejorada para crear un docente
     public void CrearNew(ActionEvent e) {
         String id = "DOC";
+        super.getSelected().setCargo("Docente");
         boolean salir = false;
         int cont = 0;
         List<Docente> R = null;

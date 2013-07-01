@@ -19,8 +19,12 @@
                         <p:inputText id="cargoPK_idcargo" value="#{cargoController.selected.cargoPK.idcargo}" title="#{myBundle.CreateCargoTitle_cargoPK_idcargo}" required="true" requiredMessage="#{myBundle.CreateCargoRequiredMessage_cargoPK_idcargo}"/>
 
                         <p:outputLabel value="#{myBundle.CreateCargoLabel_nombrecargo}" for="nombrecargo" />
-                        <p:inputText id="nombrecargo" value="#{cargoController.selected.nombrecargo}" title="#{myBundle.CreateCargoTitle_nombrecargo}" />
-
+                        <p:selectOneMenu id="nombrecargo" value="#{cargoController.selected.nombrecargo}">
+                            <f:selectItem itemLabel="Jefe" itemValue="Jefe" /> 
+                            <f:selectItem itemLabel="Secetario" itemValue="Secretario" />
+                            <f:selectItem itemLabel="Director" itemValue="Director" />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{myBundle.CreateCargoLabel_fechainiciocargo}" for="fechainiciocargo" />
                         <p:calendar id="fechainiciocargo" pattern="MM/dd/yyyy" value="#{cargoController.selected.fechainiciocargo}" title="#{myBundle.EditCargoTitle_fechainiciocargo}"  showOn="button"/>
 
